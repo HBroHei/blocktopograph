@@ -1,4 +1,12 @@
 # Blocktopograph
+This is a fork of the app that aims to maintain *The absolute bare minimum* for the "satelite" function to render worlds modified in latest version of Minecraft Bedrock Edition properly (1.20 aas of the time writing).\
+
+##Plans for the near future
+- Render new blocks properly
+- New biome colour support
+
+
+#======ORGINAL DESCRIPTION======
 
 ![author](https://github.com/Templarian/MaterialDesign/blob/master/svg/account.svg)
 

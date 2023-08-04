@@ -57,6 +57,18 @@ public class Log {
         pw.close();
     }
 
+    public static void w(@NonNull Object caller, @NonNull String msg) {
+        android.util.Log.w(LOG_TAG, prependClassName(caller, msg));
+    }
+
+    public static void w(@NonNull Object caller, @NonNull Throwable throwable) {
+        StringWriter sw = new StringWriter(4096);
+        PrintWriter pw = new PrintWriter(sw);
+        throwable.printStackTrace(pw);
+        android.util.Log.w(LOG_TAG, prependClassName(caller, sw.toString()));
+        pw.close();
+    }
+
     public static void e(@NonNull Object caller, @NonNull String msg) {
         d(caller, msg);
         if (mIsCrashlyticsEnabled)

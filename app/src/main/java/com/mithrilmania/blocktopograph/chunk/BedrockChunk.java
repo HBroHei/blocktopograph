@@ -9,8 +9,6 @@ import com.mithrilmania.blocktopograph.WorldData;
 import com.mithrilmania.blocktopograph.block.Block;
 import com.mithrilmania.blocktopograph.block.BlockTemplate;
 import com.mithrilmania.blocktopograph.block.BlockTemplates;
-import com.mithrilmania.blocktopograph.block.OldBlock;
-import com.mithrilmania.blocktopograph.block.KnownBlockRepr;
 import com.mithrilmania.blocktopograph.chunk.terrain.TerrainSubChunk;
 import com.mithrilmania.blocktopograph.map.Biome;
 import com.mithrilmania.blocktopograph.map.Dimension;
@@ -19,11 +17,15 @@ import com.mithrilmania.blocktopograph.util.Noise;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.util.Arrays;
 
 public final class BedrockChunk extends Chunk {
 
     private static final int POS_HEIGHTMAP = 0;
-    private static final int POS_BIOME_DATA = 0x200;
+    /**
+     * The byte position of the biome data in the data
+     */
+    private static final int POS_BIOME_DATA = 0x300;
     public static final int DATA2D_LENGTH = 0x300;
 
     private boolean mHasBlockLight;
@@ -32,7 +34,10 @@ public final class BedrockChunk extends Chunk {
     private final boolean[] mErrorList;
     private boolean mIs2dDirty;
     private final TerrainSubChunk[] mTerrainSubChunks;
+    // TODO Change data2D to data3D
     private volatile ByteBuffer data2D;
+
+    private int counter = 0;
 
     BedrockChunk(WorldData worldData, Version version, int chunkX, int chunkZ, Dimension dimension,
                  boolean createIfMissing) {
@@ -46,15 +51,77 @@ public final class BedrockChunk extends Chunk {
         mIs2dDirty = false;
     }
 
+    //TODO check mIsError / getChunkData working
     private void load2dData(boolean createIfMissing) {
         if (data2D == null) {
             try {
                 byte[] rawData = mWorldData.get().getChunkData(
-                        mChunkX, mChunkZ, ChunkTag.DATA_2D, mDimension, (byte) 0, false);
+                        mChunkX, mChunkZ, ChunkTag.DATA_3D, mDimension, (byte) 0, false);
+                /*
+                Current status:
+                    getChunkData() can successfully return raw data from leveldb
+                    Data length seems to be consistently 1060 bytes
+                        (only for flat world it seems, normal downloaded maps have actual variable sizes)
+                    Datas are stored in pairs of 2 (e.g. [73,0,73,0,...])
+                        which is matching what the Minecraft Wiki says:
+                            Heightmap (256x2 bytes)
+                            Biome data (varying lengths)
+                        (from https://minecraft.fandom.com/wiki/Bedrock_Edition_level_format)
+                    Each vertical chunk has 1 chunks
+                    Each pairs' first number represents the maximum height that column has.
+                 */
+                //DEBUG MSG
+                /*
+                counter++;
+                Log.d(this,mChunkX + "," + mChunkZ + ". RawData: " + Arrays.toString(rawData));
+
+                // Offset to after height map: 512
+
+                int counter16 = 0;
+                int zLayer = 0;
+                String outputMsg = "";
+                Log.d(this,"     001     002     003     004     005     006     007     008     009     010     011     012     013     014     015     016");
+                for (int i = 0; i < rawData.length; i+=2) {
+                    Byte b = rawData[i];
+                    Byte b2 = rawData[i+1];
+                    outputMsg += String.format("%03d", b.intValue()) + " " + String.format("%03d", b2.intValue()) + "|";
+                    counter16++;
+                    if (counter16 >= 16) {
+                        counter16 = 0;
+                        Log.d(this, String.format("%03d", zLayer) + ": " + outputMsg);
+                        outputMsg = "";
+                        zLayer++;
+                        if(counter16%256==0 && counter16!=0){
+                            Log.d(this,"");
+                            counter16 = 0;
+                            break;
+                        }
+
+                    }
+                }
+                Log.d(this,mChunkX + "," + mChunkZ + ". RawData Len: " + rawData.length);
+
+                // DEBUG FOR LOOP
+                int counter73 = 0;
+                int counter4 = 0;
+                for(int i=0;i < rawData.length;i+=2){
+                    if(rawData[i]==3 && rawData[i+1]==0)
+                        counter73++;
+                    else if(rawData[i]==4 && rawData[i+1]==0)
+                        counter4++;
+                }
+                Log.d(this,mChunkX + "," + mChunkZ + ", RawData count 3: " + counter73 + " | 4: " + counter4 + " | Total: " + (counter73+counter4));
+                /**/
+                // END OF DEBUG CODE
+
                 if (rawData == null) {
                     if (createIfMissing) {
+                        // https://wiki.vg/Bedrock_Edition_level_format
+                        // ^Is that only partly updated?
                         this.data2D = ByteBuffer.allocate(DATA2D_LENGTH);
                     } else {
+                        Log.w(this,"rawData = null, createIfMissing = false");
+                        Log.d(this,mChunkX + "," + mChunkZ);
                         mIsError = true;
                         mIsVoid = true;
                     }
@@ -65,15 +132,24 @@ public final class BedrockChunk extends Chunk {
                 if (BuildConfig.DEBUG) {
                     Log.d(this, e);
                 }
+                Log.w(this,"e");
                 mIsError = true;
                 mIsVoid = true;
             }
+
+            /*
+            Data3D format: (According to PaLM)
+                16 bytes for block state entries
+                32 bytes for entity entries
+                48 bytes for tile entity entries
+             */
         }
     }
 
     @Nullable
     private TerrainSubChunk getSubChunk(int which, boolean createIfMissing) {
         if (mIsError || mVoidList[which]) return null;
+        //Log.d(this,"NOT (mIsError || mVoidList[which])");
         TerrainSubChunk ret = mTerrainSubChunks[which];
         if (ret == null) {
             byte[] raw;
@@ -81,11 +157,14 @@ public final class BedrockChunk extends Chunk {
             try {
                 raw = worldData.getChunkData(mChunkX, mChunkZ,
                         ChunkTag.TERRAIN, mDimension, (byte) which, true);
+                //Log.d(this,mChunkX + ", " + mChunkZ + " raw: " + Arrays.toString(raw));
                 if (raw == null && !createIfMissing) {
                     mVoidList[which] = true;
+                    Log.d(this,"Voided (1)");
                     return null;
                 }
             } catch (Exception e) {
+                Log.d(this,"Errored (1)");
                 if (BuildConfig.DEBUG) {
                     Log.d(this, e);
                 }
@@ -99,7 +178,9 @@ public final class BedrockChunk extends Chunk {
             if (ret == null || ret.isError()) {
                 mVoidList[which] = true;
                 mErrorList[which] = true;
+                //Log.d(this, String.valueOf((ret==null)));
                 ret = null;
+                //Log.d(this, String.valueOf(ret.isError()));
             } else if (!ret.hasBlockLight()) mHasBlockLight = false;
             mTerrainSubChunks[which] = ret;
         }
@@ -122,7 +203,7 @@ public final class BedrockChunk extends Chunk {
 
     @Override
     public int getHeightLimit() {
-        return 256;
+        return 321;
     }
 
     @Override
@@ -139,7 +220,9 @@ public final class BedrockChunk extends Chunk {
 
     @Override
     public int getBiome(int x, int z) {
+        //'Log.d(this,"Biome: Is Void: "  + mIsVoid);
         if (mIsVoid) return 0;
+        //Log.d(this, String.valueOf(data2D.get(POS_BIOME_DATA + get2dOffset(x, z))));
         return data2D.get(POS_BIOME_DATA + get2dOffset(x, z));
     }
 
@@ -171,6 +254,7 @@ public final class BedrockChunk extends Chunk {
     public int getGrassColor(int x, int z) {
         Biome biome = Biome.getBiome(getBiome(x, z) & 0xff);
         int noise = getNoise(x, z);
+        //Log.d(this, "Biome Color: " + String.valueOf(getBiome(x, z) & 0xff/**/)); //TODO This should not return 255
         int r = 30 + (biome.color.red / 5) + noise;
         int g = 110 + (biome.color.green / 5) + noise;
         int b = 30 + (biome.color.blue / 5) + noise;
@@ -180,18 +264,22 @@ public final class BedrockChunk extends Chunk {
     @NonNull
     @Override
     public BlockTemplate getBlockTemplate(int x, int y, int z, int layer) {
-        if (x >= 16 || y >= 256 || z >= 16 || x < 0 || y < 0 || z < 0 || mIsVoid)
+        if (checkBlockPosLimit(x,y,z))
             return BlockTemplates.getAirTemplate();
+        //Log.d(this,"It is within bound");
+        //TODO Check if this works correctly
         TerrainSubChunk subChunk = getSubChunk(y >> 4, false);
         if (subChunk == null)
             return BlockTemplates.getAirTemplate();
+        //Log.d(this,"Subchunk is not null");
+        //Log.d(this,subChunk.getBlockTemplate(x, y & 0xf, z, layer).getBlock().getName());
         return subChunk.getBlockTemplate(x, y & 0xf, z, layer);
     }
 
     @NonNull
     @Override
     public Block getBlock(int x, int y, int z, int layer) {
-        if (x >= 16 || y >= 256 || z >= 16 || x < 0 || y < 0 || z < 0 || mIsVoid)
+        if (checkBlockPosLimit(x,y,z))
             throw new IllegalArgumentException();
         TerrainSubChunk subChunk = getSubChunk(y >> 4, false);
         if (subChunk == null)
@@ -201,7 +289,7 @@ public final class BedrockChunk extends Chunk {
 
     @Override
     public void setBlock(int x, int y, int z, int layer, @NonNull Block block) {
-        if (x >= 16 || y >= 256 || z >= 16 || x < 0 || y < 0 || z < 0 || mIsVoid)
+        if (checkBlockPosLimit(x,y,z))
             return;
         int which = y >> 4;
         TerrainSubChunk subChunk = getSubChunk(which, true);
@@ -229,7 +317,7 @@ public final class BedrockChunk extends Chunk {
 
     @Override
     public int getBlockLightValue(int x, int y, int z) {
-        if (!mHasBlockLight || x >= 16 || y >= 256 || z >= 16 || x < 0 || y < 0 || z < 0 || mIsVoid)
+        if (!mHasBlockLight || x >= 16 || y >= 321 || z >= 16 || x < 0 || y < -64 || z < 0 || mIsVoid)
             return 0;
         TerrainSubChunk subChunk = getSubChunk(y >> 4, false);
         if (subChunk == null) return 0;
@@ -238,7 +326,7 @@ public final class BedrockChunk extends Chunk {
 
     @Override
     public int getSkyLightValue(int x, int y, int z) {
-        if (x >= 16 || y >= 256 || z >= 16 || x < 0 || y < 0 || z < 0 || mIsVoid)
+        if (checkBlockPosLimit(x,y,z))
             return 0;
         TerrainSubChunk subChunk = getSubChunk(y >> 4, false);
         if (subChunk == null) return 0;
@@ -247,7 +335,7 @@ public final class BedrockChunk extends Chunk {
 
     @Override
     public int getHighestBlockYUnderAt(int x, int z, int y) {
-        if (x >= 16 || y >= 256 || z >= 16 || x < 0 || y < 0 || z < 0 || mIsVoid)
+        if (checkBlockPosLimit(x,y,z))
             return -1;
         TerrainSubChunk subChunk;
         for (int which = y >> 4; which >= 0; which--) {
@@ -263,7 +351,7 @@ public final class BedrockChunk extends Chunk {
 
     @Override
     public int getCaveYUnderAt(int x, int z, int y) {
-        if (x >= 16 || y >= 256 || z >= 16 || x < 0 || y < 0 || z < 0 || mIsVoid)
+        if (checkBlockPosLimit(x,y,z))
             return -1;
         TerrainSubChunk subChunk;
         for (int which = y >> 4; which >= 0; which--) {
@@ -289,7 +377,7 @@ public final class BedrockChunk extends Chunk {
         // Save biome and hightmap.
         if (mIs2dDirty)
             worldData.writeChunkData(
-                    mChunkX, mChunkZ, ChunkTag.DATA_2D, mDimension, (byte) 0, false, data2D.array());
+                    mChunkX, mChunkZ, ChunkTag.DATA_3D, mDimension, (byte) 0, false, data2D.array());
 
         // Save subChunks.
         for (int i = 0, mTerrainSubChunksLength = mTerrainSubChunks.length; i < mTerrainSubChunksLength; i++) {
@@ -298,5 +386,9 @@ public final class BedrockChunk extends Chunk {
             //Log.d(this,"Saving "+i);
             subChunk.save(worldData, mChunkX, mChunkZ, mDimension, i);
         }
+    }
+
+    private boolean checkBlockPosLimit(int x,int y, int z){
+        return (x >= 16 || y >= 320 || z >= 16 || x < 0 || y < -64 || z < 0 || mIsVoid);
     }
 }

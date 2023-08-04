@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
+import android.util.Log;
 
 import com.mithrilmania.blocktopograph.WorldActivityInterface;
 import com.mithrilmania.blocktopograph.WorldData;
@@ -18,7 +19,9 @@ import com.qozix.tileview.tiles.Tile;
 
 import java.lang.ref.WeakReference;
 
-
+/**
+ * This is the class that renders things
+ */
 public class MCTileProvider implements BitmapProvider {
 
 
@@ -130,13 +133,16 @@ public class MCTileProvider implements BitmapProvider {
 
                     Chunk chunk = worldData.getChunk(x, z, dimension);
                     if (chunk.isError()) {
+                        Log.w("RENDERING","Warning: Chunk is error");
                         MapType.ERROR.renderer.renderToBitmap(chunk, canvas, dimension,
                                 x, z, pX, pY, pixelsPerBlockW, pixelsPerBlockL, paint, worldData);
                         continue;
                     }
                     MapType.CHESS.renderer.renderToBitmap(chunk, canvas, dimension,
                             x, z, pX, pY, pixelsPerBlockW, pixelsPerBlockL, paint, worldData);
+                    //TODO CHUNKS GOT RECOGNISE AS VOID.
                     if (chunk.isVoid()) continue;
+                    //Log.d("RENDERING","It is not void");
                     try {
                         mapType.renderer.renderToBitmap(chunk, canvas, dimension, x, z,
                                 pX, pY, pixelsPerBlockW, pixelsPerBlockL, paint, worldData);
@@ -145,6 +151,7 @@ public class MCTileProvider implements BitmapProvider {
 
                         MapType.ERROR.renderer.renderToBitmap(chunk, canvas, dimension,
                                 x, z, pX, pY, pixelsPerBlockW, pixelsPerBlockL, paint, worldData);
+                        Log.w("RENDERING",e);
                         e.printStackTrace();
 
                     }

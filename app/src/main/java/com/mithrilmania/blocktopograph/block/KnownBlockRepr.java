@@ -29,6 +29,10 @@ import java.util.Map;
  * --- Please attribute @mithrilmania for generating+updating this enum
  */
 public enum KnownBlockRepr implements NamedBitmapProviderHandle, NamedBitmapProvider {
+    /* Wow uh I guess I need to write a program to automate this task
+     */
+
+
     /*
      * ==============================
      *       Blocks
@@ -1189,11 +1193,12 @@ public enum KnownBlockRepr implements NamedBitmapProviderHandle, NamedBitmapProv
             if (b.bitmap == null && b.texPath != null) {
                 try {
                     b.bitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeStream(assetManager.open(b.texPath)), 32, 32, false);
+                    Log.d(KnownBlockRepr.class, assetManager.open(b.texPath).toString());
                 } catch (FileNotFoundException e) {
                     //TODO file-paths were generated from block names; some do not actually exist...
                     //Log.w("File not found! "+b.texPath);
                 } catch (Exception e) {
-                    Log.d(KnownBlockRepr.class, e);
+                    Log.e(KnownBlockRepr.class, e);
                 }
             }
         }

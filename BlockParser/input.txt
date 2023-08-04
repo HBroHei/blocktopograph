@@ -1,0 +1,731 @@
+	0 	0 	air 	Air
+	1 	1 	stone 	stone
+	2 	2 	grass 	Grass Block
+	3 	3 	dirt 	dirt
+	4 	4 	cobblestone 	Cobblestone
+	5 	5 	planks 	Wooden Planks
+	6 	6 	sapling 	Sapling
+	7 	7 	bedrock 	Bedrock
+	8 	8 	flowing_water 	Flowing Water
+	9 	9 	water 	Stationary Water
+	10 	A 	flowing_lava 	Flowing Lava
+	11 	B 	lava 	Stationary Lava
+	12 	C 	sand 	sand
+	13 	D 	gravel 	Gravel
+	14 	E 	gold_ore 	Gold Ore
+	15 	F 	iron_ore 	Iron Ore
+	16 	10 	coal_ore 	Coal Ore
+	17 	11 	log 	log
+	18 	12 	leaves 	leaves
+	19 	13 	sponge 	Sponge
+	20 	14 	glass 	Glass
+	21 	15 	lapis_ore 	Lapis Lazuli Ore
+	22 	16 	lapis_block 	Lapis Lazuli Block
+	23 	17 	dispenser 	Dispenser
+	24 	18 	sandstone 	sandstone
+	25 	19 	noteblock 	Note Block
+	26 	1A 	bed 	Bed
+	27 	1B 	golden_rail 	Powered Rail
+	28 	1C 	detector_rail 	Detector Rail
+	29 	1D 	sticky_piston 	Sticky Piston
+	30 	1E 	web 	Cobweb
+	31 	1F 	tallgrass 	tallgrass
+	32 	20 	deadbush 	Dead Bush
+	33 	21 	piston 	Piston
+	34 	22 	pistonarmcollision 	Piston Arm Collision
+	35 	23 	wool 	Wool
+	36 	24 	element_0 	???
+	37 	25 	yellow_flower 	Yellow Flower
+	38 	26 	red_flower 	Red Flower
+	39 	27 	brown_mushroom 	Brown Mushroom
+	40 	28 	red_mushroom 	Red Mushroom
+	41 	29 	gold_block 	Block of Gold
+	42 	2A 	iron_block 	Block of Iron
+	43 	2B 	double_stone_slab 	double_stone_slab
+	44 	2C 	stone_slab 	stone_slab
+	45 	2D 	brick_block 	Brick Block
+	46 	2E 	tnt 	TNT
+	47 	2F 	bookshelf 	Bookshelf
+	48 	30 	mossy_cobblestone 	Mossy Cobblestone
+	49 	31 	obsidian 	Obsidian
+Icon 	Dec 	Hex 	Resource location 	Block
+	50 	32 	torch 	Torch
+	51 	33 	fire 	Fire
+	52 	34 	mob_spawner 	Monster Spawner
+	53 	35 	oak_stairs 	Oak Wood Stairs
+	54 	36 	chest 	Chest
+	55 	37 	redstone_wire 	Redstone Dust
+	56 	38 	diamond_ore 	Diamond Ore
+	57 	39 	diamond_block 	Block of Diamond
+	58 	3A 	crafting_table 	Crafting Table
+	59 	3B 	wheat 	Crops
+	60 	3C 	farmland 	Farmland
+	61 	3D 	furnace 	Furnace
+	62 	3E 	lit_furnace 	Lit Furnace
+	63 	3F 	standing_sign 	Oak Sign
+	64 	40 	wooden_door 	Oak Door
+	65 	41 	ladder 	Ladder
+	66 	42 	rail 	Rail
+	67 	43 	stone_stairs 	Cobblestone Stairs
+	68 	44 	wall_sign 	Oak Wall Sign
+	69 	45 	lever 	Lever
+	70 	46 	stone_pressure_plate 	Stone Pressure Plate
+	71 	47 	iron_door 	Iron Door
+	72 	48 	wooden_pressure_plate 	Oak Pressure Plate
+	73 	49 	redstone_ore 	Redstone Ore
+	74 	4A 	lit_redstone_ore 	Lit Redstone Ore
+	75 	4B 	unlit_redstone_torch 	Unlit Redstone Torch
+	76 	4C 	redstone_torch 	Redstone Torch
+	77 	4D 	stone_button 	Stone Button
+	78 	4E 	snow_layer 	Snow
+	79 	4F 	ice 	Ice
+	80 	50 	snow 	Snow Block
+	81 	51 	cactus 	Cactus
+	82 	52 	clay 	Clay Block
+	83 	53 	reeds 	Sugar cane
+	84 	54 	jukebox 	Jukebox
+	85 	55 	fence 	Wooden Fence
+	86 	56 	pumpkin 	Pumpkin
+	87 	57 	netherrack 	Netherrack
+	88 	58 	soul_sand 	Soul Sand
+	89 	59 	glowstone 	Glowstone
+	90 	5A 	portal 	Nether Portal
+	91 	5B 	lit_pumpkin 	Jack o'Lantern
+	92 	5C 	cake 	Cake
+	93 	5D 	unpowered_repeater 	Unpowered Redstone Repeater
+	94 	5E 	powered_repeater 	Powered Redstone Repeater
+	95 	5F 	invisibleBedrock 	Invisible Bedrock
+	96 	60 	trapdoor 	Oak Trapdoor
+	97 	61 	monster_egg 	Infested Block
+	98 	62 	stonebrick 	Stone Bricks
+	99 	63 	brown_mushroom_block 	brown_mushroom_block
+Icon 	Dec 	Hex 	Resource location 	Block
+	100 	64 	red_mushroom_block 	Red Mushroom Block
+	101 	65 	iron_bars 	Iron Bars
+	102 	66 	glass_pane 	Glass Pane
+	103 	67 	melon_block 	Melon
+	104 	68 	pumpkin_stem 	Pumpkin Stem
+	105 	69 	melon_stem 	Melon Stem
+	106 	6A 	vine 	Vines
+	107 	6B 	fence_gate 	Oak Fence Gate
+	108 	6C 	brick_stairs 	Brick Stairs
+	109 	6D 	stone_brick_stairs 	Stone Brick Stairs
+	110 	6E 	mycelium 	Mycelium
+	111 	6F 	waterlily 	Lily Pad
+	112 	70 	nether_brick 	Nether Brick Block
+	113 	71 	nether_brick_fence 	Nether Brick Fence
+	114 	72 	nether_brick_stairs 	Nether Brick Stairs
+	115 	73 	nether_wart 	Nether Wart
+	116 	74 	enchanting_table 	Enchantment Table
+	117 	75 	brewing_stand 	Brewing Stand
+	118 	76 	cauldron 	Cauldron
+	119 	77 	end_portal 	End Portal
+	120 	78 	end_portal_frame 	End Portal Frame
+	121 	79 	end_stone 	End Stone
+	122 	7A 	dragon_egg 	Dragon Egg
+	123 	7B 	redstone_lamp 	Redstone Lamp
+	124 	7C 	lit_redstone_lamp 	Lit Redstone Lamp
+	125 	7D 	dropper 	Dropper
+	126 	7E 	activator_rail 	Activator Rail
+	127 	7F 	cocoa 	Cocoa
+	128 	80 	sandstone_stairs 	Sandstone Stairs
+	129 	81 	emerald_ore 	Emerald Ore
+	130 	82 	ender_chest 	Ender Chest
+	131 	83 	tripwire_hook 	Tripwire Hook
+	132 	84 	tripwire 	Tripwire
+	133 	85 	emerald_block 	Block of Emerald
+	134 	86 	spruce_stairs 	Spruce Wood Stairs
+	135 	87 	birch_stairs 	Birch Wood Stairs
+	136 	88 	jungle_stairs 	Jungle Wood Stairs
+	137 	89 	command_block 	Impulse Command Block
+	138 	8A 	beacon 	Beacon
+	139 	8B 	cobblestone_wall 	cobblestone_wall
+	140 	8C 	flower_pot 	Flower Pot
+	141 	8D 	carrots 	Carrots
+	142 	8E 	potatoes 	Potatoes
+	143 	8F 	wooden_button 	Oak Button
+	144 	90 	skull 	Skull
+	145 	91 	anvil 	Anvil
+	146 	92 	trapped_chest 	Trapped Chest
+	147 	93 	light_weighted_pressure_plate 	Light Weighted Pressure Plate
+	148 	94 	heavy_weighted_pressure_plate 	Heavy Weighted Pressure Plate
+	149 	95 	unpowered_comparator 	Unpowered Redstone Comparator
+Icon 	Dec 	Hex 	Resource location 	Block
+	150 	96 	powered_comparator 	Powered Redstone Comparator
+	151 	97 	daylight_detector 	Daylight Sensor
+	152 	98 	redstone_block 	Block of Redstone
+	153 	99 	quartz_ore 	Nether Quartz Ore
+	154 	9A 	hopper 	Hopper
+	155 	9B 	quartz_block 	quartz_block
+	156 	9C 	quartz_stairs 	Quartz Stairs
+	157 	9D 	double_wooden_slab 	Double Wood Slab
+	158 	9E 	wooden_slab 	Wooden Slab
+	159 	9F 	stained_hardened_clay 	Terracotta
+	160 	A0 	stained_glass_pane 	Stained Glass Pane
+	161 	A1 	leaves2 	leaves2
+	162 	A2 	log2 	log2
+	163 	A3 	acacia_stairs 	Acacia Wood Stairs
+	164 	A4 	dark_oak_stairs 	Dark Oak Wood Stairs
+	165 	A5 	slime 	Slime Block
+	166 	A6 		(unused)
+	167 	A7 	iron_trapdoor 	Iron Trapdoor
+	168 	A8 	prismarine 	prismarine
+	169 	A9 	sealantern 	Sea Lantern
+	170 	AA 	hay_block 	Hay Bale
+	171 	AB 	carpet 	Carpet
+	172 	AC 	hardened_clay 	Terracotta
+	173 	AD 	coal_block 	Block of Coal
+	174 	AE 	packed_ice 	Packed Ice
+	175 	AF 	double_plant 	Double Plant
+	176 	B0 	standing_banner 	Banner
+	177 	B1 	wall_banner 	Wall Banner
+	178 	B2 	daylight_detector_inverted 	Inverted Daylight Detector
+	179 	B3 	red_sandstone 	red_sandstone
+	180 	B4 	red_sandstone_stairs 	Red Sandstone Stairs
+	181 	B5 	double_stone_slab2 	double_stone_slab2
+	182 	B6 	stone_slab2 	stone_slab2
+	183 	B7 	spruce_fence_gate 	Spruce Fence Gate
+	184 	B8 	birch_fence_gate 	Birch Fence Gate
+	185 	B9 	jungle_fence_gate 	Jungle Fence Gate
+	186 	BA 	dark_oak_fence_gate 	Dark Oak Fence Gate
+	187 	BB 	acacia_fence_gate 	Acacia Fence Gate
+	188 	BC 	repeating_command_block 	Repeating Command Block
+	189 	BD 	chain_command_block 	Chain Command Block
+	190 	BE 	hard_glass_pane 	Hardened Glass Pane
+	191 	BF 	hard_stained_glass_pane 	Hardened Stained Glass Pane
+	192 	C0 	chemical_heat 	Heat Block
+	193 	C1 	spruce_door 	Spruce Door
+	194 	C2 	birch_door 	Birch Door
+	195 	C3 	jungle_door 	Jungle Door
+	196 	C4 	acacia_door 	Acacia Door
+	197 	C5 	dark_oak_door 	Dark Oak Door
+	198 	C6 	grass_path 	Dirt Path
+	199 	C7 	frame 	Item Frame
+Icon 	Dec 	Hex 	Resource location 	Block
+	200 	C8 	chorus_flower 	Chorus Flower
+	201 	C9 	purpur_block 	purpur_block
+	202 	CA 	colored_torch_rg 	colored_torch_rg
+	203 	CB 	purpur_stairs 	Purpur Stairs
+	204 	CC 	colored_torch_bp 	colored_torch_bp
+	205 	CD 	undyed_shulker_box 	Shulker Box
+	206 	CE 	end_bricks 	End Stone Bricks
+	207 	CF 	frosted_ice 	Frosted Ice
+	208 	D0 	end_rod 	End Rod
+	209 	D1 	end_gateway 	End Gateway
+	210 	D2 	allow 	Allow
+	211 	D3 	deny 	Deny
+	212 	D4 	border_block 	Border
+	213 	D5 	magma 	Magma Block
+	214 	D6 	nether_wart_block 	Nether Wart Block
+	215 	D7 	red_nether_brick 	Red Nether Brick Block
+	216 	D8 	bone_block 	Bone Block
+	217 	D9 	structure_void 	Structure Void
+	218 	DA 	shulker_box 	Dyed Shulker Box
+	219 	DB 	purple_glazed_terracotta 	Purple Glazed Terracotta
+	220 	DC 	white_glazed_terracotta 	White Glazed Terracotta
+	221 	DD 	orange_glazed_terracotta 	Orange Glazed Terracotta
+	222 	DE 	magenta_glazed_terracotta 	Magenta Glazed Terracotta
+	223 	DF 	light_blue_glazed_terracotta 	Light Blue Glazed Terracotta
+	224 	E0 	yellow_glazed_terracotta 	Yellow Glazed Terracotta
+	225 	E1 	lime_glazed_terracotta 	Lime Glazed Terracotta
+	226 	E2 	pink_glazed_terracotta 	Pink Glazed Terracotta
+	227 	E3 	gray_glazed_terracotta 	Gray Glazed Terracotta
+	228 	E4 	silver_glazed_terracotta 	Light Gray Glazed Terracotta
+	229 	E5 	cyan_glazed_terracotta 	Cyan Glazed Terracotta
+	230 	E6 	chalkboard 	Chalkboard
+	231 	E7 	blue_glazed_terracotta 	Blue Glazed Terracotta
+	232 	E8 	brown_glazed_terracotta 	Brown Glazed Terracotta
+	233 	E9 	green_glazed_terracotta 	Green Glazed Terracotta
+	234 	EA 	red_glazed_terracotta 	Red Glazed Terracotta
+	235 	EB 	black_glazed_terracotta 	Black Glazed Terracotta
+	236 	EC 	concrete 	Concrete
+	237 	ED 	concrete_powder 	Concrete Powder
+	238 	EE 	chemistry_table 	Chemistry Table
+	239 	EF 	underwater_torch 	Underwater Torch
+	240 	F0 	chorus_plant 	Chorus Plant
+	241 	F1 	stained_glass 	Stained Glass
+	242 	F2 	camera 	Camera
+	243 	F3 	podzol 	Podzol
+	244 	F4 	beetroot 	Beetroot
+	245 	F5 	stonecutter 	Stonecutter
+	246 	F6 	glowingobsidian 	Glowing Obsidian
+	247 	F7 	netherreactor 	Nether Reactor Core
+	248 	F8 	info_update 	Info Update
+	249 	F9 	info_update2 	Info Update 2
+Icon 	Dec 	Hex 	Resource location 	Block
+	250 	FA 	movingBlock 	Moving Block
+	251 	FB 	observer 	Observer
+	252 	FC 	structure_block 	Structure Block
+	253 	FD 	hard_glass 	Hardened Glass
+	254 	FE 	hard_stained_glass 	Hardened Stained Glass
+	255 	FF 	reserved6 	Reserved6
+	257 	101 	prismarine_stairs 	Prismarine Stairs
+	258 	102 	dark_prismarine_stairs 	Dark Prismarine Stairs
+	259 	103 	prismarine_bricks_stairs 	Prismarine Brick Stairs
+	260 	104 	stripped_spruce_log 	Stripped Spruce Log
+	261 	105 	stripped_birch_log 	Stripped Birch Log
+	262 	106 	stripped_jungle_log 	Stripped Jungle Log
+	263 	107 	stripped_acacia_log 	Stripped Acacia Log
+	264 	108 	stripped_dark_oak_log 	Stripped Dark Oak Log
+	265 	109 	stripped_oak_log 	Stripped Oak Log
+	266 	10A 	blue_ice 	Blue Ice
+	267 	10B 	element_1 	Hydrogen
+	268 	10C 	element_2 	Helium
+	269 	10D 	element_3 	Lithium
+	270 	10E 	element_4 	Beryllium
+	271 	10F 	element_5 	Boron
+	272 	110 	element_6 	Carbon
+	273 	111 	element_7 	Nitrogen
+	274 	112 	element_8 	Oxygen
+	275 	113 	element_9 	Fluorine
+	276 	114 	element_10 	Neon
+	277 	115 	element_11 	Sodium
+	278 	116 	element_12 	Magnesium
+	279 	117 	element_13 	Aluminum
+	280 	118 	element_14 	Silicon
+	281 	119 	element_15 	Phosphorus
+	282 	11A 	element_16 	Sulfur
+	283 	11B 	element_17 	Chlorine
+	284 	11C 	element_18 	Argon
+	285 	11D 	element_19 	Potassium
+	286 	11E 	element_20 	Calcium
+	287 	11F 	element_21 	Scandium
+	288 	120 	element_22 	Titanium
+	289 	121 	element_23 	Vanadium
+	290 	122 	element_24 	Chromium
+	291 	123 	element_25 	Manganese
+	292 	124 	element_26 	Iron
+	293 	125 	element_27 	Cobalt
+	294 	126 	element_28 	Nickel
+	295 	127 	element_29 	Copper
+	296 	128 	element_30 	Zinc
+	297 	129 	element_31 	Gallium
+	298 	12A 	element_32 	Germanium
+	299 	12B 	element_33 	Arsenic
+	300 	12C 	element_34 	Selenium
+Icon 	Dec 	Hex 	Resource location 	Block
+	301 	12D 	element_35 	Bromine
+	302 	12E 	element_36 	Krypton
+	303 	12F 	element_37 	Rubidium
+	304 	130 	element_38 	Strontium
+	305 	131 	element_39 	Yttrium
+	306 	132 	element_40 	Zirconium
+	307 	133 	element_41 	Niobium
+	308 	134 	element_42 	Molybdenum
+	309 	135 	element_43 	Technetium
+	310 	136 	element_44 	Ruthenium
+	311 	137 	element_45 	Rhodium
+	312 	138 	element_46 	Palladium
+	313 	139 	element_47 	Silver
+	314 	13A 	element_48 	Cadmium
+	315 	13B 	element_49 	Indium
+	316 	13C 	element_50 	Tin
+	317 	13D 	element_51 	Antimony
+	318 	13E 	element_52 	Tellurium
+	319 	13F 	element_53 	Iodine
+	320 	140 	element_54 	Xenon
+	321 	141 	element_55 	Cesium
+	322 	142 	element_56 	Barium
+	323 	143 	element_57 	Lanthanum
+	324 	144 	element_58 	Cerium
+	325 	145 	element_59 	Praseodymium
+	326 	146 	element_60 	Neodymium
+	327 	147 	element_61 	Promethium
+	328 	148 	element_62 	Samarium
+	329 	149 	element_63 	Europium
+	330 	14A 	element_64 	Gadolinium
+	331 	14B 	element_65 	Terbium
+	332 	14C 	element_66 	Dysprosium
+	333 	14D 	element_67 	Holmium
+	334 	14E 	element_68 	Erbium
+	335 	14F 	element_69 	Thulium
+	336 	150 	element_70 	Ytterbium
+	337 	151 	element_71 	Lutetium
+	338 	152 	element_72 	Hafnium
+	339 	153 	element_73 	Tantalum
+	340 	154 	element_74 	Tungsten
+	341 	155 	element_75 	Rhenium
+	342 	156 	element_76 	Osmium
+	343 	157 	element_77 	Iridium
+	344 	158 	element_78 	Platinum
+	345 	159 	element_79 	Gold
+	346 	15A 	element_80 	Mercury
+	347 	15B 	element_81 	Thallium
+	348 	15C 	element_82 	Lead
+	349 	15D 	element_83 	Bismuth
+	350 	15E 	element_84 	Polonium
+Icon 	Dec 	Hex 	Resource location 	Block
+	351 	15F 	element_85 	Astatine
+	352 	160 	element_86 	Radon
+	353 	161 	element_87 	Francium
+	354 	162 	element_88 	Radium
+	355 	163 	element_89 	Actinium
+	356 	164 	element_90 	Thorium
+	357 	165 	element_91 	Protactinium
+	358 	166 	element_92 	Uranium
+	359 	167 	element_93 	Neptunium
+	360 	168 	element_94 	Plutonium
+	361 	169 	element_95 	Americium
+	362 	16A 	element_96 	Curium
+	363 	16B 	element_97 	Berkelium
+	364 	16C 	element_98 	Californium
+	365 	16D 	element_99 	Einsteinium
+	366 	16E 	element_100 	Fermium
+	367 	16F 	element_101 	Mendelevium
+	368 	170 	element_102 	Nobelium
+	369 	171 	element_103 	Lawrencium
+	370 	172 	element_104 	Rutherfordium
+	371 	173 	element_105 	Dubnium
+	372 	174 	element_106 	Seaborgium
+	373 	175 	element_107 	Bohrium
+	374 	176 	element_108 	Hassium
+	375 	177 	element_109 	Meitnerium
+	376 	178 	element_110 	Darmstadtium
+	377 	179 	element_111 	Roentgenium
+	378 	17A 	element_112 	Copernicium
+	379 	17B 	element_113 	Nihonium
+	380 	17C 	element_114 	Flerovium
+	381 	17D 	element_115 	Moscovium
+	382 	17E 	element_116 	Livermorium
+	383 	17F 	element_117 	Tennessine
+	384 	180 	element_118 	Oganesson
+	385 	181 	seagrass 	Seagrass
+	386 	182 	coral 	Coral
+	387 	183 	coral_block 	Coral Block
+	388 	184 	coral_fan 	Coral Fan
+	389 	185 	coral_fan_dead 	Dead Coral Fan
+	390 	186 	coral_fan_hang 	coral_fan_hang
+	391 	187 	coral_fan_hang2 	coral_fan_hang2
+	392 	188 	coral_fan_hang3 	coral_fan_hang3
+	393 	189 	kelp 	Kelp
+	394 	18A 	dried_kelp_block 	Dried Kelp Block
+	395 	18B 	acacia_button 	Acacia Button
+	396 	18C 	birch_button 	Birch Button
+	397 	18D 	dark_oak_button 	Dark Oak Button
+	398 	18E 	jungle_button 	Jungle Button
+	399 	18F 	spruce_button 	Spruce Button
+	400 	190 	acacia_trapdoor 	Acacia Trapdoor
+Icon 	Dec 	Hex 	Resource location 	Block
+	401 	191 	birch_trapdoor 	Birch Trapdoor
+	402 	192 	dark_oak_trapdoor 	Dark Oak Trapdoor
+	403 	193 	jungle_trapdoor 	Jungle Trapdoor
+	404 	194 	spruce_trapdoor 	Spruce Trapdoor
+	405 	195 	acacia_pressure_plate 	Acacia Pressure Plate
+	406 	196 	birch_pressure_plate 	Birch Pressure Plate
+	407 	197 	dark_oak_pressure_plate 	Dark Oak Pressure Plate
+	408 	198 	jungle_pressure_plate 	Jungle Pressure Plate
+	409 	199 	spruce_pressure_plate 	Spruce Pressure Plate
+	410 	19A 	carved_pumpkin 	Carved Pumpkin
+	411 	19B 	sea_pickle 	Sea Pickle
+	412 	19C 	conduit 	Conduit
+	413 	19D 		(unused)
+	414 	19E 	turtle_egg 	Sea Turtle Egg
+	415 	19F 	bubble_column 	Bubble Column
+	416 	1A0 	barrier 	Barrier
+	417 	1A1 	stone_slab3 	stone_slab3
+	418 	1A2 	bamboo 	Bamboo
+	419 	1A3 	bamboo_sapling 	Bamboo Sapling
+	420 	1A4 	scaffolding 	Scaffolding
+	421 	1A5 	stone_slab4 	stone_slab4
+	422 	1A6 	double_stone_slab3 	double_stone_slab3
+	423 	1A7 	double_stone_slab4 	double_stone_slab4
+	424 	1A8 	granite_stairs 	Granite Stairs
+	425 	1A9 	diorite_stairs 	Diorite Stairs
+	426 	1AA 	andesite_stairs 	Andesite Stairs
+	427 	1AB 	polished_granite_stairs 	Polished Granite Stairs
+	428 	1AC 	polished_diorite_stairs 	Polished Diorite Stairs
+	429 	1AD 	polished_andesite_stairs 	Polished Andesite Stairs
+	430 	1AE 	mossy_stone_brick_stairs 	Mossy Stone Brick Stairs
+	431 	1AF 	smooth_red_sandstone_stairs 	Smooth Red Sandstone Stairs
+	432 	1B0 	smooth_sandstone_stairs 	Smooth Sandstone Stairs
+	433 	1B1 	end_brick_stairs 	End Stone Brick Stairs
+	434 	1B2 	mossy_cobblestone_stairs 	Mossy Cobblestone Stairs
+	435 	1B3 	normal_stone_stairs 	Stone Stairs
+	436 	1B4 	spruce_standing_sign 	Spruce Sign
+	437 	1B5 	spruce_wall_sign 	Spruce Wall Sign
+	438 	1B6 	smooth_stone 	Smooth Stone
+	439 	1B7 	red_nether_brick_stairs 	Red Nether Brick Stairs
+	440 	1B8 	smooth_quartz_stairs 	Smooth Quartz Stairs
+	441 	1B9 	birch_standing_sign 	Birch Sign
+	442 	1BA 	birch_wall_sign 	Birch Wall Sign
+	443 	1BB 	jungle_standing_sign 	Jungle Sign
+	444 	1BC 	jungle_wall_sign 	Jungle Wall Sign
+	445 	1BD 	acacia_standing_sign 	Acacia Sign
+	446 	1BE 	acacia_wall_sign 	Acacia Wall Sign
+	447 	1BF 	darkoak_standing_sign 	Dark Oak Sign
+	448 	1C0 	darkoak_wall_sign 	Dark Oak Wall Sign
+	449 	1C1 	lectern 	Lectern
+	450 	1C2 	grindstone 	Grindstone
+Icon 	Dec 	Hex 	Resource location 	Block
+	451 	1C3 	blast_furnace 	Blast Furnace
+	452 	1C4 	stonecutter_block 	Stonecutter
+	453 	1C5 	smoker 	Smoker
+	454 	1C6 	lit_smoker 	Lit Smoker
+	455 	1C7 	cartography_table 	Cartography Table
+	456 	1C8 	fletching_table 	Fletching Table
+	457 	1C9 	smithing_table 	Smithing Table
+	458 	1CA 	barrel 	Barrel
+	459 	1CB 	loom 	Loom
+	460 	1CC 		(unused)
+	461 	1CD 	bell 	Bell
+	462 	1CE 	sweet_berry_bush 	Sweet Berry Bush
+	463 	1CF 	lantern 	Lantern
+	464 	1D0 	campfire 	Campfire
+	465 	1D1 	lava_cauldron 	Lava Cauldron
+	466 	1D2 	jigsaw 	Jigsaw Block
+	467 	1D3 	wood 	Wood
+	468 	1D4 	composter 	Composter
+	469 	1D5 	lit_blast_furnace 	Lit Blast Furnace
+	470 	1D6 	light_block 	Light Block
+	471 	1D7 	wither_rose 	Wither Rose
+	472 	1D8 	stickypistonarmcollision 	Sticky Piston Arm Collision
+	473 	1D9 	bee_nest 	Bee Nest
+	474 	1DA 	beehive 	Beehive
+	475 	1DB 	honey_block 	Honey Block
+	476 	1DC 	honeycomb_block 	Honeycomb Block
+	477 	1DD 	lodestone 	Lodestone
+	478 	1DE 	crimson_roots 	Crimson Roots
+	479 	1DF 	warped_roots 	Warped Roots
+	480 	1E0 	crimson_stem 	Crimson Stem
+	481 	1E1 	warped_stem 	Warped Stem
+	482 	1E2 	warped_wart_block 	Warped Wart Block
+	483 	1E3 	crimson_fungus 	Crimson Fungus
+	484 	1E4 	warped_fungus 	Warped Fungus
+	485 	1E5 	shroomlight 	Shroomlight
+	486 	1E6 	weeping_vines 	Weeping Vines
+	487 	1E7 	crimson_nylium 	Crimson Nylium
+	488 	1E8 	warped_nylium 	Warped Nylium
+	489 	1E9 	basalt 	Basalt
+	490 	1EA 	polished_basalt 	Polished Basalt
+	491 	1EB 	soul_soil 	Soul Soil
+	492 	1EC 	soul_fire 	Soul Fire
+	493 	1ED 	nether_sprouts 	Nether Sprouts
+	494 	1EE 	target 	Target
+	495 	1EF 	stripped_crimson_stem 	Stripped Crimson Stem
+	496 	1F0 	stripped_warped_stem 	Stripped Warped Stem
+	497 	1F1 	crimson_planks 	Crimson Planks
+	498 	1F2 	warped_planks 	Warped Planks
+	499 	1F3 	crimson_door 	Crimson Door
+	500 	1F4 	warped_door 	Warped Door
+Icon 	Dec 	Hex 	Resource location 	Block
+	501 	1F5 	crimson_trapdoor 	Crimson Trapdoor
+	502 	1F6 	warped_trapdoor 	Warped Trapdoor
+503-504 (Unused)
+	505 	1F9 	crimson_standing_sign 	Crimson Sign
+	506 	1FA 	warped_standing_sign 	Warped Sign
+	507 	1FB 	crimson_wall_sign 	Crimson Wall Sign
+	508 	1FC 	warped_wall_sign 	Warped Wall Sign
+	509 	1FD 	crimson_stairs 	Crimson Stairs
+	510 	1FE 	warped_stairs 	Warped Stairs
+	511 	1FF 	crimson_fence 	Crimson Fence
+	512 	200 	warped_fence 	Warped Fence
+	513 	201 	crimson_fence_gate 	Crimson Fence Gate
+	514 	202 	warped_fence_gate 	Warped Fence Gate
+	515 	203 	crimson_button 	Crimson Button
+	516 	204 	warped_button 	Warped Button
+	517 	205 	crimson_pressure_plate 	Crimson Pressure Plate
+	518 	206 	warped_pressure_plate 	Warped Pressure Plate
+	519 	207 	crimson_slab 	Crimson Slab
+	520 	208 	warped_slab 	Warped Slab
+	521 	209 	crimson_double_slab 	Crimson Double Slab
+	522 	20A 	warped_double_slab 	Warped Double Slab
+	523 	20B 	soul_torch 	Soul Torch
+	524 	20C 	soul_lantern 	Soul Lantern
+	525 	20D 	netherite_block 	Block of Netherite
+	526 	20E 	ancient_debris 	Ancient Debris
+	527 	20F 	respawn_anchor 	Respawn Anchor
+	528 	210 	blackstone 	Blackstone
+	529 	211 	polished_blackstone_bricks 	Polished Blackstone Bricks
+	530 	212 	polished_blackstone_brick_stairs 	Polished Blackstone Brick Stairs
+	531 	213 	blackstone_stairs 	Blackstone Stairs
+	532 	214 	blackstone_wall 	Blackstone Wall
+	533 	215 	polished_blackstone_brick_wall 	Polished Blackstone Brick Wall
+	534 	216 	chiseled_polished_blackstone 	Chiseled Polished Blackstone
+	535 	217 	cracked_polished_blackstone_bricks 	Cracked Polished Blackstone Bricks
+	536 	218 	gilded_blackstone 	Gilded Blackstone
+	537 	219 	blackstone_slab 	Blackstone Slab
+	538 	21A 	blackstone_double_slab 	Blackstone Double Slab
+	539 	21B 	polished_blackstone_brick_slab 	Polished Blackstone Brick Slab
+	540 	21C 	polished_blackstone_brick_double_slab 	Polished Blackstone Brick Double Slab
+	541 	21D 	chain 	Chain
+	542 	21E 	twisting_vines 	Twisting Vines
+	543 	21F 	nether_gold_ore 	Nether Gold Ore
+	544 	220 	crying_obsidian 	Crying Obsidian
+	545 	221 	soul_campfire 	Soul Campfire
+	546 	222 	polished_blackstone 	Polished Blackstone
+	547 	223 	polished_blackstone_stairs 	Polished Blackstone Stairs
+	548 	224 	polished_blackstone_slab 	Polished Blackstone Slab
+	549 	225 	polished_blackstone_double_slab 	Polished Blackstone Double Slab
+	550 	226 	polished_blackstone_pressure_plate 	Polished Blackstone Pressure Plate
+	551 	227 	polished_blackstone_button 	Polished Blackstone Button
+Icon 	Dec 	Hex 	Resource location 	Block
+	552 	228 	polished_blackstone_wall 	Polished Blackstone Wall
+	553 	229 	warped_hyphae 	Warped Hyphae
+	554 	22A 	crimson_hyphae 	Crimson Hyphae
+	555 	22B 	stripped_crimson_hyphae 	Stripped Crimson Hyphae
+	556 	22C 	stripped_warped_hyphae 	Stripped Warped Hyphae
+	557 	22D 	chiseled_nether_bricks 	Chiseled Nether Bricks
+	558 	22E 	cracked_nether_bricks 	Cracked Nether Bricks
+	559 	22F 	quartz_bricks 	Quartz Bricks
+	560 	230 	unknown 	Unknown
+	561 	231 	powder_snow 	Powder Snow
+	562 	232 	sculk_sensor 	Sculk Sensor
+	563 	233 	pointed_dripstone 	Pointed Dripstone
+564-565 (Unused)
+	566 	236 	copper_ore 	Copper Ore
+	567 	237 	lightning_rod 	Lightning Rod
+568-571 (Unused)
+	572 	23C 	dripstone_block 	Dripstone Block
+	573 	23D 	dirt_with_roots 	Rooted Dirt
+	574 	23E 	hanging_roots 	Hanging Roots
+	575 	23F 	moss_block 	Moss Block
+	576 	240 	spore_blossom 	Spore Blossom
+	577 	241 	cave_vines 	Cave Vines
+	578 	242 	big_dripleaf 	Big Dripleaf
+	579 	243 	azalea_leaves 	Azalea Leaves
+	580 	244 	azalea_leaves_flowered 	Flowered Azalea Leaves
+	581 	245 	calcite 	Calcite
+	582 	246 	amethyst_block 	Amethyst Block
+	583 	247 	budding_amethyst 	Budding Amethyst
+	584 	248 	amethyst_cluster 	Amethyst Cluster
+	585 	249 	large_amethyst_bud 	Large Amethyst Bud
+	586 	24A 	medium_amethyst_bud 	Medium Amethyst Bud
+	587 	24B 	small_amethyst_bud 	Small Amethyst Bud
+	588 	24C 	tuff 	Tuff
+	589 	24D 	tinted_glass 	Tinted Glass
+	590 	24E 	moss_carpet 	Moss Carpet
+	591 	24F 	small_dripleaf_block 	Small Dripleaf
+	592 	250 	azalea 	Azalea
+	593 	251 	flowering_azalea 	Flowering Azalea
+	594 	252 	glow_frame 	Glow Item Frame
+	595 	253 	copper_block 	Block of Copper
+	596 	254 	exposed_copper 	Exposed Copper
+	597 	255 	weathered_copper 	Weathered Copper
+	598 	256 	oxidized_copper 	Oxidized Copper
+	599 	257 	waxed_copper 	Waxed Block of Copper
+	600 	258 	waxed_exposed_copper 	Waxed Exposed Copper
+	601 	259 	waxed_weathered_copper 	Waxed Weathered Copper
+	602 	25A 	cut_copper 	Cut Copper
+	603 	25B 	exposed_cut_copper 	Exposed Cut Copper
+	604 	25C 	weathered_cut_copper 	Weathered Cut Copper
+	605 	25D 	oxidized_cut_copper 	Oxidized Cut Copper
+Icon 	Dec 	Hex 	Resource location 	Block
+	606 	25E 	waxed_cut_copper 	Waxed Cut Copper
+	607 	25F 	waxed_exposed_cut_copper 	Waxed Exposed Cut Copper
+	608 	260 	waxed_weathered_cut_copper 	Waxed Weathered Cut Copper
+	609 	261 	cut_copper_stairs 	Cut Copper Stairs
+	610 	262 	exposed_cut_copper_stairs 	Exposed Cut Copper Stairs
+	611 	263 	weathered_cut_copper_stairs 	Weathered Cut Copper Stairs
+	612 	264 	oxidized_cut_copper_stairs 	Oxidized Cut Copper Stairs
+	613 	265 	waxed_cut_copper_stairs 	Waxed Cut Copper Stairs
+	614 	266 	waxed_exposed_cut_copper_stairs 	Waxed Exposed Cut Copper Stairs
+	615 	267 	waxed_weathered_cut_copper_stairs 	Waxed Weathered Cut Copper Stairs
+	616 	268 	cut_copper_slab 	Cut Copper Slab
+	617 	269 	exposed_cut_copper_slab 	Exposed Cut Copper Slab
+	618 	26A 	weathered_cut_copper_slab 	Weathered Cut Copper Slab
+	619 	26B 	oxidized_cut_copper_slab 	Oxidized Cut Copper Slab
+	620 	26C 	waxed_cut_copper_slab 	Waxed Cut Copper Slab
+	621 	26D 	waxed_exposed_cut_copper_slab 	Waxed Exposed Cut Copper Slab
+	622 	26E 	waxed_weathered_cut_copper_slab 	Waxed Weathered Cut Copper Slab
+	623 	26F 	double_cut_copper_slab 	Double Cut Copper Slab
+	624 	270 	exposed_double_cut_copper_slab 	Exposed Double Cut Copper Slab
+	625 	271 	weathered_double_cut_copper_slab 	Weathered Double Cut Copper Slab
+	626 	272 	oxidized_double_cut_copper_slab 	Oxidized Double Cut Copper Slab
+	627 	273 	waxed_double_cut_copper_slab 	Waxed Double Cut Copper Slab
+	628 	274 	waxed_exposed_double_cut_copper_slab 	Waxed Exposed Double Cut Copper Slab
+	629 	275 	waxed_weathered_double_cut_copper_slab 	Waxed Weathered Double Cut Copper Slab
+	630 	276 	cave_vines_body_with_berries 	Cave Vines Body With Berries
+	631 	277 	cave_vines_head_with_berries 	Cave Vines Head With Berries
+	632 	278 	smooth_basalt 	Smooth Basalt
+	633 	279 	deepslate 	Deepslate
+	634 	27A 	cobbled_deepslate 	Cobbled Deepslate
+	635 	27B 	cobbled_deepslate_slab 	Cobbled Deepslate Slab
+	636 	27C 	cobbled_deepslate_stairs 	Cobbled Deepslate Stairs
+	637 	27D 	cobbled_deepslate_wall 	Cobbled Deepslate Wall
+	638 	27E 	polished_deepslate 	Polished Deepslate
+	639 	27F 	polished_deepslate_slab 	Polished Deepslate Slab
+	640 	280 	polished_deepslate_stairs 	Polished Deepslate Stairs
+	641 	281 	polished_deepslate_wall 	Polished Deepslate Wall
+	642 	282 	deepslate_tiles 	Deepslate Tiles
+	643 	283 	deepslate_tile_slab 	Deepslate Tile Slab
+	644 	284 	deepslate_tile_stairs 	Deepslate Tile Stairs
+	645 	285 	deepslate_tile_wall 	Deepslate Tile Wall
+	646 	286 	deepslate_bricks 	Deepslate Bricks
+	647 	287 	deepslate_brick_slab 	Deepslate Brick Slab
+	648 	288 	deepslate_brick_stairs 	Deepslate Brick Stairs
+	649 	289 	deepslate_brick_wall 	Deepslate Brick Wall
+	650 	28A 	chiseled_deepslate 	Chiseled Deepslate
+	651 	28B 	cobbled_deepslate_double_slab 	Cobbled Deepslate Double Slab
+	652 	28C 	polished_deepslate_double_slab 	Polished Deepslate Double Slab
+	653 	28D 	deepslate_tile_double_slab 	Deepslate Tile Double Slab
+	654 	28E 	deepslate_brick_double_slab 	Deepslate Brick Double Slab
+	655 	28F 	deepslate_lapis_ore 	Deepslate Lapis Lazuli Ore
+Icon 	Dec 	Hex 	Resource location 	Block
+	656 	290 	deepslate_iron_ore 	Deepslate Iron Ore
+	657 	291 	deepslate_gold_ore 	Deepslate Gold Ore
+	658 	292 	deepslate_redstone_ore 	Deepslate Redstone Ore
+	659 	293 	lit_deepslate_redstone_ore 	Lit Deepslate Redstone Ore
+	660 	294 	deepslate_diamond_ore 	Deepslate Diamond Ore
+	661 	295 	deepslate_coal_ore 	Deepslate Coal Ore
+	662 	296 	deepslate_emerald_ore 	Deepslate Emerald Ore
+	663 	297 	deepslate_copper_ore 	Deepslate Copper Ore
+	664 	298 	cracked_deepslate_tiles 	Cracked Deepslate Tiles
+	665 	299 	cracked_deepslate_bricks 	Cracked Deepslate Bricks
+	666 	29A 	glow_lichen 	Glow Lichen
+	667 	29B 	candle 	Candle
+	668 	29C 	white_candle 	White Candle
+	669 	29D 	orange_candle 	Orange Candle
+	670 	29E 	magenta_candle 	Magenta Candle
+	671 	29F 	light_blue_candle 	Light Blue Candle
+	672 	2A0 	yellow_candle 	Yellow Candle
+	673 	2A1 	lime_candle 	Lime Candle
+	674 	2A2 	pink_candle 	Pink Candle
+	675 	2A3 	gray_candle 	Gray Candle
+	676 	2A4 	light_gray_candle 	Light Gray Candle
+	677 	2A5 	cyan_candle 	Cyan Candle
+	678 	2A6 	purple_candle 	Purple Candle
+	679 	2A7 	blue_candle 	Blue Candle
+	680 	2A8 	brown_candle 	Brown Candle
+	681 	2A9 	green_candle 	Green Candle
+	682 	2AA 	red_candle 	Red Candle
+	683 	2AB 	black_candle 	Black Candle
+	684 	2AC 	candle_cake 	Cake with Candle
+	685 	2AD 	white_candle_cake 	Cake with White Candle
+	686 	2AE 	orange_candle_cake 	Cake with Orange Candle
+	687 	2AF 	magenta_candle_cake 	Cake with Magenta Candle
+	688 	2B0 	light_blue_candle_cake 	Cake with Light Blue Candle
+	689 	2B1 	yellow_candle_cake 	Cake with Yellow Candle
+	690 	2B2 	lime_candle_cake 	Cake with Lime Candle
+	691 	2B3 	pink_candle_cake 	Cake with Pink Candle
+	692 	2B4 	gray_candle_cake 	Cake with Gray Candle
+	693 	2B5 	light_gray_candle_cake 	Cake with Light Gray Candle
+	694 	2B6 	cyan_candle_cake 	Cake with Cyan Candle
+	695 	2B7 	purple_candle_cake 	Cake with Purple Candle
+	696 	2B8 	blue_candle_cake 	Cake with Blue Candle
+	697 	2B9 	brown_candle_cake 	Cake with Brown Candle
+	698 	2BA 	green_candle_cake 	Cake with Green Candle
+	699 	2BB 	red_candle_cake 	Cake with Red Candle
+	700 	2BC 	black_candle_cake 	Cake with Black Candle
+	701 	2BD 	waxed_oxidized_copper 	Waxed Oxidized Copper
+	702 	2BE 	waxed_oxidized_cut_copper 	Waxed Oxidized Cut Copper
+	703 	2BF 	waxed_oxidized_cut_copper_stairs 	Waxed Oxidized Cut Copper Stairs
+	704 	2C0 	waxed_oxidized_cut_copper_slab 	Waxed Oxidized Cut Copper Slab
+	705 	2C1 	waxed_oxidized_double_cut_copper_slab 	Waxed Oxidized Double Cut Copper Slab
+Icon 	Dec 	Hex 	Resource location 	Block
+	706 	2C2 	raw_iron_block 	Block of Raw Iron
+	707 	2C3 	raw_copper_block 	Block of Raw Copper
+	708 	2C4 	raw_gold_block 	Block of Raw Gold
+	709 	2C5 	infested_deepslate 	Infested Deepslate
+710-712 (Unused)
+	713 	2C9 	sculk 	Sculk
+	714 	2CA 	sculk_vein 	Sculk Vein
+	715 	2CB 	sculk_catalyst 	Sculk Catalyst
+	716 	2CC 	sculk_shrieker 	Sculk Shrieker
+717-719 (Unused)
+	720 	2D0 	client_request_placeholder_block 	Client Request Placeholder Block
+	721 	2D1 	mysterious_frame 	Mysterious Frame
+	722 	2D2 	mysterious_frame_slot 	Mysterious Frame Slot
+	723 	2D3 	frog_spawn 	Frog Spawn
+	724 	2D4 	pearlescent_froglight 	Pearlescent Froglight
+	725 	2D5 	verdant_froglight 	Verdant Froglight
+	726 	2D6 	ochre_froglight 	Ochre Froglight

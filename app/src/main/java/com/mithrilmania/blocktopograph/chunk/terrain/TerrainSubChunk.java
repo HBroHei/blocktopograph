@@ -1,5 +1,7 @@
 package com.mithrilmania.blocktopograph.chunk.terrain;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -28,6 +30,7 @@ public abstract class TerrainSubChunk {
     public static TerrainSubChunk create(@NonNull byte[] rawData) {
         TerrainSubChunk subChunk;
         ByteBuffer byteBuffer = ByteBuffer.wrap(rawData);
+        //Log.d("RENDERING", String.valueOf(rawData[0]));
         switch (rawData[0]) {
 //            case 0:
 //            case 2:
@@ -40,6 +43,9 @@ public abstract class TerrainSubChunk {
 //                break;
             case 1:
             case 8:
+            case 9: //1.20 Chunk version
+                // There is an extra byte
+                // REF: https://github.com/Amulet-Team/Amulet-Core/blob/2c6c1c12d4bd7842259b2d3cb04b44481434b7e6/amulet/level/formats/leveldb_world/interface/chunk/base_leveldb_interface.py#L409
                 subChunk = new V1d2d13TerrainSubChunk(byteBuffer);
                 break;
             default:

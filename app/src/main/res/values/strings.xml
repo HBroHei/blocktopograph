@@ -487,4 +487,6 @@
     <string name="auto_backup_caption">Auto Backup In Progress...</string>
     <string name="auto_backup_name">[Auto]</string>
     <string name="world_name_broken">Broken World</string>
+    <string name="create_block_btn">Add Blocks</string>
+    <string name="title_activity_add_block">AddBlockActivity</string>
 </resources>

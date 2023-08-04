@@ -129,7 +129,15 @@ public enum Biome {
 	MEADOW(186, "Meadow", ColorWrapper.fromRGB(0, 0, 0)),
 	LUSH_CAVES(187, "Lush Caves", ColorWrapper.fromRGB(0, 0, 0)),
 	DRIPSTONE_CAVES(188, "Dripstone Caves", ColorWrapper.fromRGB(0, 0, 0)),
-	STONY_PEAKS(189, "Stony Peaks", ColorWrapper.fromRGB(0, 0, 0))
+	STONY_PEAKS(189, "Stony Peaks", ColorWrapper.fromRGB(0, 0, 0)),
+
+	// 1.18 biomes
+	MANGROVE_SWAMP(191,"Mangrove Swamp",ColorWrapper.fromRGB(0,0,0)),
+	//DEEP_DARK()
+
+
+	//Flat world
+	//PLAINS_FLAT(255,"Flat world biome?",ColorWrapper.fromRGB(140, 176, 96))
 	;
 
 	private static final SparseArray<Biome> biomeMap;
@@ -152,7 +160,11 @@ public enum Biome {
 	}
 
 	public static Biome getBiome(int id) {
-		return biomeMap.get(id);
+		if(id==255)
+			//Default to plains biome
+			return biomeMap.get(1);
+		else
+			return biomeMap.get(id);
 	}
 
 

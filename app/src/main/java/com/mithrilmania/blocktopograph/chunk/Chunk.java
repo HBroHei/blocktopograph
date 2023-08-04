@@ -77,6 +77,8 @@ public abstract class Chunk {
             version = Version.ERROR;
         }
         Chunk chunk;
+        //android.util.Log.d("RENDERING","Version: " + version.displayName);
+        //TODO Fix Version: Error
         switch (version) {
 //            case ERROR:
 //            case OLD_LIMITED:
@@ -90,6 +92,7 @@ public abstract class Chunk {
 //            case V1_1:
             case V1_2_PLUS:
             case V1_16_PLUS:
+            case V1_20_PLUS: // This is so not sustainable lol
                 chunk = new BedrockChunk(worldData, version, chunkX, chunkZ, dimension, false);
                 break;
             case NULL:

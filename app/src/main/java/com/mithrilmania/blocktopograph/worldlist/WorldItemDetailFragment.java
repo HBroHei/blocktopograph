@@ -140,6 +140,7 @@ public class WorldItemDetailFragment extends Fragment implements View.OnClickLis
         return binding.getRoot();
     }
 
+    //Go to the world map screen
     private void startWorldActivity() {
 
         Activity activity = getActivity();

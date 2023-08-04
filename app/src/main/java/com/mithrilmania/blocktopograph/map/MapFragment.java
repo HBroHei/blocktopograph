@@ -84,7 +84,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-
+/**
+ * A class that inherits Fragment, which is used for displaying world map
+ */
 public class MapFragment extends Fragment {
 
     private final static int MARKER_INTERVAL_CHECK = 50;
@@ -468,22 +470,23 @@ public class MapFragment extends Fragment {
             } else worldProvider.hideActionBar();
         });
 
+        //Log.d(this,"Does this even be called?");
 
         try {
             Entity.loadEntityBitmaps(activity.getAssets());
         } catch (IOException e) {
-            Log.d(this, e);
+            Log.d(this, "Entity loading: " + e);
         }
 
         try {
             KnownBlockRepr.loadBitmaps(activity.getAssets());
         } catch (IOException e) {
-            Log.d(this, e);
+            Log.d(this, "Map rendering: " + e);
         }
         try {
             CustomIcon.loadCustomBitmaps(activity.getAssets());
         } catch (IOException e) {
-            Log.d(this, e);
+            Log.d(this, "Custom Icon: " + e);
         }
 
         //set the map-type

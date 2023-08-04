@@ -1,9 +1,14 @@
 #include <string.h>
+#include <string>
 #include <jni.h>
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <android/log.h>
+
+//Debugging use only
+#include <iomanip>
+#include <sstream>
 
 #include "leveldbjni.h"
 
@@ -173,6 +178,19 @@ nativeGet(JNIEnv *env,
     jbyte *buffer = env->GetByteArrayElements(keyObj, NULL);
     jbyteArray result;
 
+    jbyte* data = env->GetByteArrayElements(keyObj, NULL);
+    jsize length = env->GetArrayLength(keyObj);
+
+    std::string outStr = "";
+
+    std::stringstream ss;
+    ss << std::hex;
+
+    for(int i(0) ; i < keyLen ; ++i)
+        ss << std::setw(2) << std::setfill('0') << (int)data[i];
+
+    __android_log_print(ANDROID_LOG_INFO,"CPP_KEY","%s", ss.str().c_str());
+
     leveldb::Slice key = leveldb::Slice((const char *) buffer, keyLen);
     //leveldb::Iterator *iter = db->NewIterator(options);
     //iter->Seek(key);
@@ -182,12 +200,19 @@ nativeGet(JNIEnv *env,
     leveldb::Status status = db->Get(options, key, &str);
     env->ReleaseByteArrayElements(keyObj, buffer, JNI_ABORT);
     if (status.ok()) {
+        //__android_log_print(ANDROID_LOG_INFO, "CPP", "Statue OK!");
         size_t len = str.size();
         result = env->NewByteArray(static_cast<jsize>(len));
         env->SetByteArrayRegion(result, 0, static_cast<jsize>(len), (const jbyte *) str.c_str());
-    } else if (status.IsNotFound())result = NULL;
+        //__android_log_print(ANDROID_LOG_INFO, "CPP", "res");
+    } else if (status.IsNotFound()) {
+        __android_log_print(ANDROID_LOG_WARN, "CPP", "Statue NOT FOUND with key %s", ss.str().c_str());
+
+        result = NULL;
+    }
     else {
         throwException(env, status);
+        //__android_log_print(ANDROID_LOG_ERROR, "CPP", "AN ERROR OCCURED");
         result = NULL;
     }
 

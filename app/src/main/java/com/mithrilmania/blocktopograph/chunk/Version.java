@@ -1,6 +1,7 @@
 package com.mithrilmania.blocktopograph.chunk;
 
 
+import android.util.Log;
 import android.util.SparseArray;
 
 import androidx.annotation.NonNull;
@@ -9,6 +10,7 @@ import androidx.annotation.Nullable;
 
 public enum Version {
 
+    //TODO This isnt very sustainable...
     ERROR("ERROR", "failed to retrieve version number", -2, 16, 16),
     NULL("NULL", "no data", -1, 16, 16),
     OLD_LIMITED("v0.2.0", "classic mcpe, 16x16x16x16x18 world, level.dat; introduced in v0.2.0", 1, 128, 1),
@@ -16,9 +18,10 @@ public enum Version {
     V1_0("v1.0.0", "Stacked sub-chunks, 256 world-height, 16 high sub-chunks; introduced in alpha v1.0.0 (v0.17)", 3, 16, 16),
     V1_1("v1.1.0", "KnownBlockRepr-light is not stored anymore", 4, 16, 16),
     V1_2_PLUS("v1.2.0.13", "Global numeric id replaced with string id and per-chunk numeric id", 7, 16, 16),
-    V1_16_PLUS("v1.16(17)", "val is replaced by block states",0x16,16,16);
+    V1_16_PLUS("v1.16(17)", "val is replaced by block states",0x16,16,16),
+    V1_20_PLUS("v1.20", "Trails And Tales",19,16,16);
 
-    public static final int LATEST_SUPPORTED_VERSION = V1_16_PLUS.id;
+    public static final int LATEST_SUPPORTED_VERSION = V1_20_PLUS.id;
 
     public final String displayName, description;
     public final int id, subChunkHeight, subChunks;
@@ -55,9 +58,12 @@ public enum Version {
 
             //fallback version
             //You can't just do this...
+            //TODO - But why?
             if (versionNumber > LATEST_SUPPORTED_VERSION) {
                 versionNumber = LATEST_SUPPORTED_VERSION;
             }
+
+            //Log.d("RENDERING","Bedrock Version: " + versionNumber);
 
             Version version = versionMap.get(versionNumber);
             //check if the returned version exists, fallback on ERROR otherwise.

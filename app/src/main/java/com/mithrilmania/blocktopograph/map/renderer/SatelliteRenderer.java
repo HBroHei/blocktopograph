@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -19,6 +20,7 @@ import com.mithrilmania.blocktopograph.map.Dimension;
 public class SatelliteRenderer implements MapRenderer {
 
     //calculate color of one column
+    //NOTE IMPORTANT
     static int getColumnColour(@NonNull Chunk chunk, int x, int y, int z, int heightW, int heightN) throws Version.VersionException {
         float alphaRemain = 1f;
         float finalR = 0f;
@@ -27,6 +29,7 @@ public class SatelliteRenderer implements MapRenderer {
 
         // extract colour components as normalized doubles, from ARGB format
         int grassColor = chunk.getGrassColor(x, z);
+        //int grassColor = 0x00000000;
         float biomeR = (float) Color.red(grassColor) / 255f;
         float biomeG = (float) Color.green(grassColor) / 255f;
         float biomeB = (float) Color.blue(grassColor) / 255f;
@@ -39,16 +42,25 @@ public class SatelliteRenderer implements MapRenderer {
             if (BlockTemplates.getAirTemplate().equals(blockTemplate)) continue;//skip air blocks
 
             int color = blockTemplate.getColor();
+            //Log.d("RENDERING","Color: " + color);
 
             // no need to process block if it is fully transparent
             if (Color.alpha(color) == 0) continue;
+            //Log.d("RENDERING","Not alpha");
 
+            /*
+            finalR = Color.red(color);
+            finalG = Color.green(color);
+            finalB = Color.blue(color);*/
+
+            //Temporary commented for debugging purposes
             float blendA = Color.alpha(color) / 255f;
 
             // alpha blend and multiply
             float blendR = alphaRemain * blendA * (Color.red(color) / 255f);
             float blendG = alphaRemain * blendA * (Color.green(color) / 255f);
             float blendB = alphaRemain * blendA * (Color.blue(color) / 255f);
+
 
             //blend biome-colored blocks
             if (blockTemplate.isHasBiomeShading()) {
@@ -61,7 +73,9 @@ public class SatelliteRenderer implements MapRenderer {
             finalG += blendG;
             finalB += blendB;
             alphaRemain *= 1f - blendA;
+            /**/
         }
+        //Log.d("RENDERING","COLOR 1: " + finalR + "," + finalG + "," + finalB);
 
         //height shading (based on slopes in terrain; height diff)
         float heightShading = getHeightShading(y, heightW, heightN);
@@ -77,12 +91,14 @@ public class SatelliteRenderer implements MapRenderer {
 
         //low places just get darker
         //shading *= Math.max(Math.min(y / 40f, 1f), 0.2f);//shade ravines & caves, minimum *0.2 to keep some color
-
+        /**/
+        //float shading=1; //Debug use
         // apply the shading
         finalR = Math.min(Math.max(0f, finalR * shading), 1f);
         finalG = Math.min(Math.max(0f, finalG * shading), 1f);
         finalB = Math.min(Math.max(0f, finalB * shading), 1f);
 
+        //Log.d("RENDERING","FINAL COLOR: " + finalR + "," + finalG + "," + finalB);
 
         // now we have our final RGB values as floats, convert to a packed ARGB pixel.
         return 0xff000000 |
@@ -91,6 +107,21 @@ public class SatelliteRenderer implements MapRenderer {
                 (((int) (finalB * 255f)) & 0xff);
     }
 
+    /**
+     * Renders the entire satelite view of the world
+     * @param chunk     The chunk.
+     * @param canvas    Canvas for the corresponding bitmap to render to, hw acceleration on
+     * @param dimension Mapped dimension
+     * @param chunkX    X chunk coordinate (x-block coord / Chunk.WIDTH)
+     * @param chunkZ    Z chunk coordinate (z-block coord / Chunk.LENGTH)
+     * @param pX        texture X pixel coord to start rendering to
+     * @param pY        texture Y pixel coord to start rendering to
+     * @param pW        width (X) of one block in pixels
+     * @param pL        length (Z) of one block in pixels
+     * @param paint     Paint instance used to draw on canvas
+     * @param worldData ChunkManager, some renderer needs info about its neighbor
+     * @throws Version.VersionException
+     */
     public void renderToBitmap(Chunk chunk, Canvas canvas, Dimension dimension, int chunkX, int chunkZ, int pX, int pY, int pW, int pL, Paint paint, WorldData worldData) throws Version.VersionException {
 
         Chunk dataW = worldData.getChunk(chunkX - 1, chunkZ, dimension);

@@ -16,6 +16,7 @@ import com.mithrilmania.blocktopograph.map.Dimension;
 import java.io.File;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -48,23 +49,25 @@ public class WorldData {
         return new String(hexChars);
     }
 
+    //TODO CHECK HERE IF IT WORKS FOR CAVES AND CLIFFS
+    // (As since 1.18, Data2D section is not updated anymore (which is what this app relies on))
     private static byte[] getChunkDataKey(int x, int z, ChunkTag type, Dimension dimension, byte subChunk, boolean asSubChunk) {
+        byte[] returnKey;
         if (dimension == Dimension.OVERWORLD) {
-            byte[] key = new byte[asSubChunk ? 10 : 9];
-            System.arraycopy(getReversedBytes(x), 0, key, 0, 4);
-            System.arraycopy(getReversedBytes(z), 0, key, 4, 4);
-            key[8] = type.dataID;
-            if (asSubChunk) key[9] = subChunk;
-            return key;
+            returnKey = new byte[asSubChunk ? 10 : 9];
+            System.arraycopy(getReversedBytes(x), 0, returnKey, 0, 4);
+            System.arraycopy(getReversedBytes(z), 0, returnKey, 4, 4);
+            returnKey[8] = type.dataID;
+            if (asSubChunk) returnKey[9] = subChunk;
         } else {
-            byte[] key = new byte[asSubChunk ? 14 : 13];
-            System.arraycopy(getReversedBytes(x), 0, key, 0, 4);
-            System.arraycopy(getReversedBytes(z), 0, key, 4, 4);
-            System.arraycopy(getReversedBytes(dimension.id), 0, key, 8, 4);
-            key[12] = type.dataID;
-            if (asSubChunk) key[13] = subChunk;
-            return key;
+            returnKey = new byte[asSubChunk ? 14 : 13];
+            System.arraycopy(getReversedBytes(x), 0, returnKey, 0, 4);
+            System.arraycopy(getReversedBytes(z), 0, returnKey, 4, 4);
+            System.arraycopy(getReversedBytes(dimension.id), 0, returnKey, 8, 4);
+            returnKey[12] = type.dataID;
+            if (asSubChunk) returnKey[13] = subChunk;
         }
+        return returnKey;
     }
 
     private static byte[] getReversedBytes(int i) {
@@ -137,13 +140,15 @@ public class WorldData {
         }
     }
 
+    // TODO From BedrockChunk.java L53
     public byte[] getChunkData(int x, int z, ChunkTag type, Dimension dimension, byte subChunk, boolean asSubChunk) throws WorldDBException, WorldDBLoadException {
 
         //ensure that the db is opened
         this.openDB();
 
         byte[] chunkKey = getChunkDataKey(x, z, type, dimension, subChunk, asSubChunk);
-        //Log.d("Getting cX: "+x+" cZ: "+z+ " with key: "+bytesToHex(chunkKey, 0, chunkKey.length));
+        Log.d(this,"Getting cX: "+x+" cZ: "+z+ " with key: "+bytesToHex(chunkKey, 0, chunkKey.length));
+        //Log.d(this, Arrays.toString(db.get(chunkKey)));
         return db.get(chunkKey);
     }
 
@@ -168,7 +173,7 @@ public class WorldData {
     public void removeFullChunk(int x, int z, Dimension dimension) {
         var iterator = db.iterator();
         int count = 0;
-        var compareKey = getChunkDataKey(x, z, ChunkTag.DATA_2D, dimension, (byte) 0, false);
+        var compareKey = getChunkDataKey(x, z, ChunkTag.DATA_3D, dimension, (byte) 0, false);
         int baseKeyLength = dimension == Dimension.OVERWORLD ? 8 : 12;
         for (iterator.seekToFirst(); iterator.isValid() && count < 800; iterator.next(), count++) {
             byte[] key = iterator.getKey();
@@ -188,6 +193,7 @@ public class WorldData {
 
     public Chunk getChunk(int cX, int cZ, Dimension dimension) {
         Key key = new Key(cX, cZ, dimension);
+        //Log.d(this,chunks.get(key).isError() + "");
         return chunks.get(key);
     }
 

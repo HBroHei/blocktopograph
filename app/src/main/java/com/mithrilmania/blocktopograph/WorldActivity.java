@@ -50,6 +50,7 @@ public class WorldActivity extends AppCompatActivity
     private World world;
     private ActivityWorldBinding mBinding;
 
+    //The main map used to show the world
     private MapFragment mapFragment;
 
     @Override
@@ -112,11 +113,9 @@ public class WorldActivity extends AppCompatActivity
                 ? getIntent().getSerializableExtra(World.ARG_WORLD_SERIALIZED)
                 : savedInstanceState.getSerializable(World.ARG_WORLD_SERIALIZED));
         if (world == null) {
-            Toast.makeText(this, "cannot open: world == null", Toast.LENGTH_SHORT).show();
-            //WTF, try going back to the previous screen by finishing this hopeless activity...
+            //TODO make this a dialog
+            Toast.makeText(this, "The world cannot be opened: world == null", Toast.LENGTH_SHORT).show();
             finish();
-            //Finish does not guarantee codes below won't be executed!
-            //Shit
             return;
         }
 
@@ -184,6 +183,7 @@ public class WorldActivity extends AppCompatActivity
             world.getWorldData().openDB();
         } catch (Exception e) {
             e.printStackTrace();
+            Toast.makeText(this, "Error: " + e, Toast.LENGTH_SHORT).show();
             finish();
         }
 //
@@ -937,6 +937,7 @@ public class WorldActivity extends AppCompatActivity
         //TODO should this use cached world-position etc.?
 
         this.confirmContentClose = null;
+        // MAP FRAGMENT CONSTRUCTOR
         this.mapFragment = new MapFragment();
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

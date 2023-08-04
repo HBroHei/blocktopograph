@@ -28,6 +28,9 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * A class used to store and get information about a world.
+ */
 public class World implements Serializable {
 
     // The World (just a WorldData handle) is serializable, this is the tag used in the android workflow

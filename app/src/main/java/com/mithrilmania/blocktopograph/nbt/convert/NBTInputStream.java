@@ -1,5 +1,7 @@
 package com.mithrilmania.blocktopograph.nbt.convert;
 
+import com.mithrilmania.blocktopograph.BuildConfig;
+import com.mithrilmania.blocktopograph.Log;
 import com.mithrilmania.blocktopograph.nbt.tags.*;
 
 import java.io.Closeable;
@@ -52,6 +54,14 @@ public final class NBTInputStream
         return readTag(0);
     }
 
+    //Ref: https://minecraft.fandom.com/wiki/Bedrock_Edition_level_format
+
+    /**
+     * reads a NBT tag
+     * @param depth ???
+     * @return The tag content
+     * @throws IOException THe tag failed to read
+     */
     private Tag readTag(int depth)
             throws IOException {
         int type = this.is.readByte() & 0xFF;
@@ -68,7 +78,13 @@ public final class NBTInputStream
         } else {
             name = "";
         }
-        return readTagPayload(type, name, depth);
+
+        Tag temp_tag = readTagPayload(type, name, depth);
+
+        //if(BuildConfig.DEBUG)
+        //    Log.d(this, temp_tag.getName() + " : " + String.valueOf(temp_tag.getValue()));
+
+        return temp_tag;
     }
 
     private Tag readTagPayload(int type, String name, int depth)

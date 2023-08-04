@@ -92,6 +92,7 @@ public class Block implements Serializable {
         public Builder setProperty(@NonNull String name, Object val) {
             int index = getKnownPropertyIndex(name, type);
             if (index >= 0) knownProperties[index] = val;
+            // For custom blocks / new blocks
             else customProperties.put(name, val);
             return this;
         }

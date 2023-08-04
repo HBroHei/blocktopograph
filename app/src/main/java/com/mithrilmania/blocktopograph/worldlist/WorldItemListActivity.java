@@ -132,7 +132,7 @@ public class WorldItemListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
         setSupportActionBar(toolbar);
-        showFeedbackRequestDialogIfNeeded();
+        //showFeedbackRequestDialogIfNeeded();
 
         if (findViewById(R.id.worlditem_detail_container) != null) {
             // The detail container view will be present only in the
@@ -191,6 +191,7 @@ public class WorldItemListActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case REQUEST_EXTERNAL_STORAGE: {
                 // If request is cancelled, the result arrays are empty.
@@ -240,6 +241,9 @@ public class WorldItemListActivity extends AppCompatActivity {
                 break;
             case R.id.action_about:
                 type = Log.ANA_PARAM_MAINACT_MENU_TYPE_ABOUT;
+                break;
+            case R.id.action_add_block:
+                type = 0;
                 break;
             default:
                 type = 0;
@@ -370,6 +374,12 @@ public class WorldItemListActivity extends AppCompatActivity {
 
                 return true;
             }
+            case R.id.action_add_block:{
+                Intent newblock = new Intent(getApplicationContext(),AddBlockActivity.class);
+                startActivity(newblock);
+                return true;
+            }
+
 //            case R.id.action_changelog: {
 //                AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
 //                TextView msg = new TextView(ctx);

@@ -57,6 +57,10 @@ public final class V1d2d13TerrainSubChunk extends TerrainSubChunk {
         createEmptyBlockStorage(0);
     }
 
+    /**
+     * Create a terrain chunk (A chunk that stores the blocks data)
+     * @param raw
+     */
     V1d2d13TerrainSubChunk(@NonNull ByteBuffer raw) {
 
         raw.order(ByteOrder.LITTLE_ENDIAN);
@@ -79,15 +83,21 @@ public final class V1d2d13TerrainSubChunk extends TerrainSubChunk {
                 break;
             // 8: One or more BlockStorage's, next byte is the count.
             case 8:
+            case 9: //1.20
+                // There is an extra byte for version 9 at position 2
+                // REF: https://github.com/Amulet-Team/Amulet-Core/blob/2c6c1c12d4bd7842259b2d3cb04b44481434b7e6/amulet/level/formats/leveldb_world/interface/chunk/base_leveldb_interface.py#L409
                 mIsDualStorageSupported = true;
                 raw.position(1);
                 int count = raw.get();
-                if (count < 1) {
+                // raw.position() should be 2 at this point, which is unrelated for the line below
+                if (count < 1) { // Check for 0
                     mIsError = true;
                     return;
                 }
+                raw.position(3); // Skip cY
                 try {
                     mStorages[0] = BlockStorage.loadAndMoveForward(raw);
+                    // Check if there is be more than 1 block in a position
                     if (count > 1) mStorages[1] = BlockStorage.loadAndMoveForward(raw);
                 } catch (IOException e) {
                     if (BuildConfig.DEBUG) {
@@ -108,8 +118,10 @@ public final class V1d2d13TerrainSubChunk extends TerrainSubChunk {
     @Override
     public BlockTemplate getBlockTemplate(int x, int y, int z, int layer) {
         if (mIsError) return BlockTemplates.getAirTemplate();
+        //Log.d(this,"m Is Not Error");
         BlockStorage storage = mStorages[layer];
         if (storage == null) return BlockTemplates.getAirTemplate();
+        //Log.d(this,"storage != null");
         return storage.getBlock(x, y, z).second;
     }
 
@@ -198,6 +210,7 @@ public final class V1d2d13TerrainSubChunk extends TerrainSubChunk {
 
         private final List<Block> palette;
 
+        // Resets every chunk
         private final List<BlockTemplate> renderPalette;
 
         private final int blockCodeLenth;
@@ -218,15 +231,20 @@ public final class V1d2d13TerrainSubChunk extends TerrainSubChunk {
         }
 
         // stateful! wrapping with static creation method
+        // GETS the block details (e.g. names, rotations, types etc)
         private BlockStorage(@NonNull ByteBuffer buffer) throws IOException {
 
             //Read BlockState length.
             //this byte = (length << 2) | serializedType.
             blockCodeLenth = (buffer.get() & 0xff) >> 1;
+            //Log.d(this,"BlockCodeLen = " + blockCodeLenth);
 
             if (blockCodeLenth > 16) throw new IOException("mBlockLength > 16");
 
             //We use this much of bytes to store BlockStates.
+            //(aka the size of the buffer then)
+            //TODO BlockCodeLen returns 0, which caused divide by zero error
+            // HEX:         FFF / (20 / blockCodeLenth) + 1
             int bufsize = (4095 / (32 / blockCodeLenth) + 1) << 2;
             byte[] arr = new byte[bufsize];
             ByteBuffer byteBuffer = ByteBuffer.wrap(arr);
@@ -234,8 +252,11 @@ public final class V1d2d13TerrainSubChunk extends TerrainSubChunk {
             records = byteBuffer.asIntBuffer();
             raw = arr;
 
+            // Copy the Raw data from the constructor param to the byteBuffer that has just created
             //No convenient way copy these stuff.
             byteBuffer.put(buffer.array(), buffer.position(), bufsize);
+            // Set the reading position of the buffer forward
+            // as the necessary data has been copied
             buffer.position(buffer.position() + bufsize);
 
             //Palette items count.
@@ -250,7 +271,7 @@ public final class V1d2d13TerrainSubChunk extends TerrainSubChunk {
             renderPalette = new ArrayList<>(16);
 
             //NBT reader requires a stream.
-            var bais = new ByteArrayInputStream(buffer.array());
+            var bais = new ByteArrayInputStream(buffer.array()); //bais stands for Byte Array Input Stream lol
 
             // Skip for byte array would not fail.
             //noinspection ResultOfMethodCallIgnored
@@ -258,10 +279,15 @@ public final class V1d2d13TerrainSubChunk extends TerrainSubChunk {
 
             //Wrap it.
             var nis = new NBTInputStream(bais, false);
-            for (int i = 0; i < psize; i++)
+            //Log.d(this,"psize: " + psize);
+            for (int i = 0; i < psize; i++) {
+                //TODO Pretty sure the new worlds are failing to render because of this
                 //Read a piece of nbt data, represented by a root CompoundTag.
-                addToPalette(deserializeBlock((CompoundTag) nis.readTag()));
 
+                //It appears that when reading new blocks (e.g. lanterns) it would crash
+                //Log.d(this, String.valueOf(nis.readTag())); //Re-comment ASAP due to it being non-reversible (i.e. it would do sth different / increase each time)
+                addToPalette(deserializeBlock((CompoundTag) nis.readTag()));
+            }
             //If one day we need to read more BlockStorage's, this line helps.
             buffer.position(buffer.position() + nis.getReadCount());
         }
@@ -308,9 +334,18 @@ public final class V1d2d13TerrainSubChunk extends TerrainSubChunk {
             return new BlockStorage(storage);
         }
 
+        //TODO check if this cause black rendering
         private void addToPalette(Block block) {
             palette.add(block);
-            renderPalette.add(BlockTemplates.getBest(block));
+            renderPalette.add(BlockTemplates.getBest(block)); // Trace: New blocks rendering broke here?
+            // DEBUG CODE \/
+            try {
+                //Log.d(this,"BNAME: " + block.getName() + " PNAME: " + palette.get(palette.size()-1).getName() + " LEN: " + palette.size() + " RNAME: " + renderPalette.get(renderPalette.size()-1).getSubName() + " LEN: " + renderPalette.size());
+                //Log.d(this,block.getType().getName()); // ERROR-CAUSING LINE
+            }
+            catch (NullPointerException npe){
+                npe.printStackTrace();
+            }
         }
 
         public boolean setBlockIfSpace(
@@ -354,6 +389,13 @@ public final class V1d2d13TerrainSubChunk extends TerrainSubChunk {
             return true;
         }
 
+        /**
+         * Getting the block data from the levelDB file
+         * @param x the x pos
+         * @param y the y pos
+         * @param z the z pos
+         * @return The block
+         */
         public Pair<Block, BlockTemplate> getBlock(int x, int y, int z) {
 
             //The codeOffset'th BlockState is wanted.
@@ -367,6 +409,12 @@ public final class V1d2d13TerrainSubChunk extends TerrainSubChunk {
 
             //Get the BlockState. It's also the index in palette array.
             int ind = (stick >> (codeOffset % intCapa * blockCodeLenth)) & msk[blockCodeLenth - 1];
+
+            /*int nobody = 1;
+            for(BlockTemplate bt : renderPalette){
+                Log.d(this, nobody + "." + bt.getBlock().getName() + ": " + bt.getColor());
+                nobody++;
+            }*/
 
             //Transform the local BlockState into global id<<8|data structure.
             return new Pair<>(palette.get(ind), renderPalette.get(ind));
@@ -413,13 +461,18 @@ public final class V1d2d13TerrainSubChunk extends TerrainSubChunk {
             ));
         }
 
+        /**
+         * Gets the blocks info and returns it as a Block object
+         * @param tag The NBT tag of the block
+         * @return The Block object representing the block
+         */
         private static Block deserializeBlock(@NonNull CompoundTag tag) {
             var name = ((StringTag) tag.getChildTagByKey(PALETTE_KEY_NAME)).getValue();
             var blockType = BlockType.get(name);
             var builder = (blockType == null ? new Block.Builder(name) : new Block.Builder(blockType));
             for (var state : ((CompoundTag) tag.getChildTagByKey(PALETTE_KEY_STATES)).getValue())
                 builder.setProperty(state);
-            Log.d(BlockStorage.class, "fuckfuckversion" + tag.getChildTagByKey(PALETTE_KEY_VERSION).getValue());
+            //Log.d(BlockStorage.class, "version" + tag.getChildTagByKey(PALETTE_KEY_VERSION).getValue());
             return builder.build();
         }
 

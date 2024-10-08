@@ -91,8 +91,6 @@ public class SatelliteRenderer implements MapRenderer {
                 (((int) (finalB * 255f)) & 0xff);
     }
 
-<<<<<<< Updated upstream
-=======
     /**
      * Renders the entire satelite view of the world
      * @param chunk     The chunk?
@@ -108,7 +106,6 @@ public class SatelliteRenderer implements MapRenderer {
      * @param worldData ChunkManager, some renderer needs info about its neighbor
      * @throws Version.VersionException
      */
->>>>>>> Stashed changes
     public void renderToBitmap(Chunk chunk, Canvas canvas, Dimension dimension, int chunkX, int chunkZ, int pX, int pY, int pW, int pL, Paint paint, WorldData worldData) throws Version.VersionException {
 
         Chunk dataW = worldData.getChunk(chunkX - 1, chunkZ, dimension);

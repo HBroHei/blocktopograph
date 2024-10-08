@@ -29,7 +29,7 @@ public class OldBlock implements Serializable {
         this.states = states;
         this.version = version;
         KnownBlockRepr legacyBlock = BlockWithStatesToLegacyBlockMapper.getBestRepr(this);
-        if (legacyBlock == null) {
+        if (legacyBlock == null) { // Fallback if the block is not found in the mapping
             for (ListingBlock lb : ListingBlock.values()) {
                 if (lb.getIdentifier().equals(oldBlockType.getName())) {
                     listingBlock = lb;

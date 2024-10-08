@@ -86,18 +86,12 @@ public final class V1d2d13TerrainSubChunk extends TerrainSubChunk {
                     mIsError = true;
                     return;
                 }
-<<<<<<< Updated upstream
-                try {
-                    mStorages[0] = BlockStorage.loadAndMoveForward(raw);
-                    if (count > 1) mStorages[1] = BlockStorage.loadAndMoveForward(raw);
-=======
                 raw.position(3); // Skip chunk Y
                 try {
                     mStorages[0] = BlockStorage.loadAndMoveForward(raw);
                     // Check if there is be more than 1 block in a position
                     // DISABLED temporary for the app to function.
                     //if (count > 1) mStorages[1] = BlockStorage.loadAndMoveForward(raw);
->>>>>>> Stashed changes
                 } catch (IOException e) {
                     if (BuildConfig.DEBUG) {
                         Log.d(this, e);

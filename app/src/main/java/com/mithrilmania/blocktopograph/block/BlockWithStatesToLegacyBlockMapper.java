@@ -26,7 +26,7 @@ public class BlockWithStatesToLegacyBlockMapper {
                 )
         });
         // TODO The whole class needs to be changed
-        mMapTypeToBlocks.put("stone", new Pair[]{ // TODO Need change?
+        mMapTypeToBlocks.put("stone", new Pair[]{
                 new Pair<>(
                         new BlockStateBuilder().addProperty("stone_type", "stone").build(),
                         KnownBlockRepr.B_STONE
@@ -62,6 +62,7 @@ public class BlockWithStatesToLegacyBlockMapper {
                         KnownBlockRepr.B_GRASS_BLOCK
                 )
         });
+        /*
         mMapTypeToBlocks.put("dirt", new Pair[]{
                 new Pair<>(
                         new BlockStateBuilder().addProperty("dirt_type", "normal").build(),
@@ -4783,7 +4784,7 @@ public class BlockWithStatesToLegacyBlockMapper {
                         KnownBlockRepr.B_4475_7_sea_pickle
                 )
         });
-
+        */
     }
 
     @Nullable

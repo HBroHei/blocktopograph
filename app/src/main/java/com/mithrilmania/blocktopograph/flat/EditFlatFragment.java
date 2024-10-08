@@ -107,7 +107,7 @@ public final class EditFlatFragment extends Fragment {
             try {
                 Activity activity = thiz.get().getActivity();
                 if (activity == null) return null;
-                ListingBlock.B_1_STONE.getIcon(activity.getAssets());
+                ListingBlock.B_STONE.getIcon(activity.getAssets()); // TODO Deprecated
             } catch (Exception e) {
                 Log.d(this, e);
             }

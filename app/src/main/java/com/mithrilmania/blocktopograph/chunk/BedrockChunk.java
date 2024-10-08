@@ -23,7 +23,17 @@ import java.nio.ByteBuffer;
 public final class BedrockChunk extends Chunk {
 
     private static final int POS_HEIGHTMAP = 0;
+<<<<<<< Updated upstream
     private static final int POS_BIOME_DATA = 0x200;
+=======
+    /**
+     * The byte position of the biome data in the data
+     */
+    private static final int POS_BIOME_DATA = 0x300;
+    /**
+     * @deprecated for it is now dynamically linked
+     */
+>>>>>>> Stashed changes
     public static final int DATA2D_LENGTH = 0x300;
 
     private boolean mHasBlockLight;
@@ -34,6 +44,13 @@ public final class BedrockChunk extends Chunk {
     private final TerrainSubChunk[] mTerrainSubChunks;
     private volatile ByteBuffer data2D;
 
+<<<<<<< Updated upstream
+=======
+    private int data2Dsize;
+
+    private int counter = 0;
+
+>>>>>>> Stashed changes
     BedrockChunk(WorldData worldData, Version version, int chunkX, int chunkZ, Dimension dimension,
                  boolean createIfMissing) {
         super(worldData, version, chunkX, chunkZ, dimension);
@@ -55,11 +72,18 @@ public final class BedrockChunk extends Chunk {
                     if (createIfMissing) {
                         this.data2D = ByteBuffer.allocate(DATA2D_LENGTH);
                     } else {
+<<<<<<< Updated upstream
+=======
+                        Log.w(this,"Chunk: " + mChunkX + "," + mChunkZ + " - rawData = null, createIfMissing = false");
+                        Log.w(this,"Chunk: " + mChunkX + "," + mChunkZ + " will be setted to Error and Void");
+>>>>>>> Stashed changes
                         mIsError = true;
                         mIsVoid = true;
+                        mHeightMapNotFound = true;
                     }
                     return;
                 }
+                this.data2Dsize = rawData.length;
                 this.data2D = ByteBuffer.wrap(rawData);
             } catch (Exception e) {
                 if (BuildConfig.DEBUG) {
@@ -140,6 +164,10 @@ public final class BedrockChunk extends Chunk {
     @Override
     public int getBiome(int x, int z) {
         if (mIsVoid) return 0;
+<<<<<<< Updated upstream
+=======
+        Log.w("System_Rendering","java.lang" + String.valueOf(get2dOffset(x, z)) + " data2d len: " + data2Dsize);
+>>>>>>> Stashed changes
         return data2D.get(POS_BIOME_DATA + get2dOffset(x, z));
     }
 
@@ -171,6 +199,10 @@ public final class BedrockChunk extends Chunk {
     public int getGrassColor(int x, int z) {
         Biome biome = Biome.getBiome(getBiome(x, z) & 0xff);
         int noise = getNoise(x, z);
+<<<<<<< Updated upstream
+=======
+        Log.d(this, "Biome Color: " + String.valueOf(getBiome(x, z) & 0xff/**/)); //TODO This should not return 255
+>>>>>>> Stashed changes
         int r = 30 + (biome.color.red / 5) + noise;
         int g = 110 + (biome.color.green / 5) + noise;
         int b = 30 + (biome.color.blue / 5) + noise;

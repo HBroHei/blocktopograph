@@ -22,49 +22,50 @@ public class BlockWithStatesToLegacyBlockMapper {
         mMapTypeToBlocks.put("air", new Pair[]{
                 new Pair<>(
                         new BlockStateBuilder().build(),
-                        KnownBlockRepr.B_0_0_AIR
+                        KnownBlockRepr.B_AIR
                 )
         });
-        mMapTypeToBlocks.put("stone", new Pair[]{
+        // TODO The whole class needs to be changed
+        mMapTypeToBlocks.put("stone", new Pair[]{ // TODO Need change?
                 new Pair<>(
                         new BlockStateBuilder().addProperty("stone_type", "stone").build(),
-                        KnownBlockRepr.B_1_0_STONE
+                        KnownBlockRepr.B_STONE
                 ),
                 new Pair<>(
                         new BlockStateBuilder().addProperty("stone_type", "granite").build(),
-                        KnownBlockRepr.B_1_1_STONE_GRANITE
+                        KnownBlockRepr.B_GRANITE
                 ),
                 new Pair<>(
                         new BlockStateBuilder().addProperty("stone_type", "granite_smooth").build(),
-                        KnownBlockRepr.B_1_2_STONE_GRANITE_SMOOTH
+                        KnownBlockRepr.B_POLISHED_GRANITE
                 ),
                 new Pair<>(
                         new BlockStateBuilder().addProperty("stone_type", "diorite").build(),
-                        KnownBlockRepr.B_1_3_STONE_DIORITE
+                        KnownBlockRepr.B_DIORITE
                 ),
                 new Pair<>(
                         new BlockStateBuilder().addProperty("stone_type", "diorite_smooth").build(),
-                        KnownBlockRepr.B_1_4_STONE_DIORITE_SMOOTH
+                        KnownBlockRepr.B_POLISHED_DIORITE
                 ),
                 new Pair<>(
                         new BlockStateBuilder().addProperty("stone_type", "andesite").build(),
-                        KnownBlockRepr.B_1_5_STONE_ANDESITE
+                        KnownBlockRepr.B_ANDESITE
                 ),
                 new Pair<>(
                         new BlockStateBuilder().addProperty("stone_type", "andesite_smooth").build(),
-                        KnownBlockRepr.B_1_6_STONE_ANDESITE_SMOOTH
+                        KnownBlockRepr.B_POLISHED_ANDESITE
                 )
         });
         mMapTypeToBlocks.put("grass", new Pair[]{
                 new Pair<>(
                         new BlockStateBuilder().build(),
-                        KnownBlockRepr.B_2_0_GRASS
+                        KnownBlockRepr.B_GRASS_BLOCK
                 )
         });
         mMapTypeToBlocks.put("dirt", new Pair[]{
                 new Pair<>(
                         new BlockStateBuilder().addProperty("dirt_type", "normal").build(),
-                        KnownBlockRepr.B_3_0_DIRT
+                            KnownBlockRepr.B_3_0_DIRT
                 )
         });
         mMapTypeToBlocks.put("cobblestone", new Pair[]{

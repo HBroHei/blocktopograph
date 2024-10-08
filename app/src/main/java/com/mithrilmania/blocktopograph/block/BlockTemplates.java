@@ -1665,7 +1665,13 @@ public class BlockTemplates {
     @NonNull
     public static BlockTemplate getBest(@NonNull Block block) {
         var type = block.getType();
+<<<<<<< Updated upstream
         if (type == null) return getUnknownBlockTemplate();
+=======
+        //Log.d("GET_BEST", "NULL? " + (type == null));
+        if (type == null) return getUnknownBlockTemplate(); //New Blocks terminates here
+        //Log.d("GET_BEST",type.getName());
+>>>>>>> Stashed changes
         List<BlockTemplate> candidates = Arrays.asList(Objects.requireNonNull(getOfType(type.getName())));
         for (int i = 0, limit = block.getType().getKnownProperties().length; i < limit; i++) {
             List<BlockTemplate> newCandidates = new ArrayList<>();

@@ -24,6 +24,7 @@ public abstract class Chunk {
     protected NBTChunkData mTileEntity;
     boolean mIsVoid;
     boolean mIsError;
+    boolean mHeightMapNotFound = false;
 
     Chunk(WorldData worldData, Version version, int chunkX, int chunkZ, Dimension dimension) {
         mWorldData = new WeakReference<>(worldData);

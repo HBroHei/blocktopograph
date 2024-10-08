@@ -173,7 +173,26 @@ nativeGet(JNIEnv *env,
     jbyte *buffer = env->GetByteArrayElements(keyObj, NULL);
     jbyteArray result;
 
+<<<<<<< Updated upstream
+=======
+    jbyte* data = env->GetByteArrayElements(keyObj, NULL);
+    jsize length = env->GetArrayLength(keyObj);
+
+    std::string outStr = "";
+
+    std::stringstream ss;
+    ss << std::hex;
+
+    // Debug print key
+    for(int i(0) ; i < keyLen ; ++i)
+        ss << std::setw(2) << std::setfill('0') << (int)data[i];
+
+    __android_log_print(ANDROID_LOG_INFO,"CPP_KEY","Key: %s", ss.str().c_str());
+
+>>>>>>> Stashed changes
     leveldb::Slice key = leveldb::Slice((const char *) buffer, keyLen);
+
+    //__android_log_print(ANDROID_LOG_INFO,"CPP_KEY","%s", key.data());
     //leveldb::Iterator *iter = db->NewIterator(options);
     //iter->Seek(key);
     //if (iter->Valid() && key == iter->key()) {

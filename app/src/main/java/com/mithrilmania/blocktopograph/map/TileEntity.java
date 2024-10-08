@@ -15,12 +15,13 @@ import java.util.Map;
 
 public enum TileEntity implements NamedBitmapProviderHandle, NamedBitmapProvider {
 
-    CHEST(0, "Chest", "Chest", ListingBlock.B_54_CHEST),
-    TRAPPED_CHEST(1, "Trapped Chest", "TrappedChest", ListingBlock.B_146_TRAPPED_CHEST),
-    ENDER_CHEST(2, "Ender Chest", "EnderChest", ListingBlock.B_130_ENDER_CHEST),
-    MOB_SPAWNER(3, "Mob Spawner", "MobSpawner", ListingBlock.B_52_MOB_SPAWNER),
-    END_PORTAL(4, "End Portal", "EndPortal", ListingBlock.B_119_END_PORTAL),
-    BEACON(5, "Beacon", "Beacon", ListingBlock.B_138_BEACON);
+    // TODO TIle Entity may need updating?
+    CHEST(0, "Chest", "Chest", ListingBlock.B_CHEST),
+    TRAPPED_CHEST(1, "Trapped Chest", "TrappedChest", ListingBlock.B_TRAPPED_CHEST),
+    ENDER_CHEST(2, "Ender Chest", "EnderChest", ListingBlock.B_ENDER_CHEST),
+    MOB_SPAWNER(3, "Mob Spawner", "MobSpawner", ListingBlock.B_MOB_SPAWNER),
+    END_PORTAL(4, "End Portal", "EndPortal", ListingBlock.B_END_PORTAL),
+    BEACON(5, "Beacon", "Beacon", ListingBlock.B_BEACON);
 
 
     private static final Map<String, TileEntity> tileEntityMap;

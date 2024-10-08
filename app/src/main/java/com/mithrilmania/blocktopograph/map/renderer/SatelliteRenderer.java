@@ -91,13 +91,31 @@ public class SatelliteRenderer implements MapRenderer {
                 (((int) (finalB * 255f)) & 0xff);
     }
 
+<<<<<<< Updated upstream
+=======
+    /**
+     * Renders the entire satelite view of the world
+     * @param chunk     The chunk?
+     * @param canvas    Canvas for the corresponding bitmap to render to, hw acceleration on
+     * @param dimension Mapped dimension
+     * @param chunkX    X chunk coordinate (x-block coord / Chunk.WIDTH)
+     * @param chunkZ    Z chunk coordinate (z-block coord / Chunk.LENGTH)
+     * @param pX        texture X pixel coord to start rendering to
+     * @param pY        texture Y pixel coord to start rendering to
+     * @param pW        width (X) of one block in pixels
+     * @param pL        length (Z) of one block in pixels
+     * @param paint     Paint instance used to draw on canvas
+     * @param worldData ChunkManager, some renderer needs info about its neighbor
+     * @throws Version.VersionException
+     */
+>>>>>>> Stashed changes
     public void renderToBitmap(Chunk chunk, Canvas canvas, Dimension dimension, int chunkX, int chunkZ, int pX, int pY, int pW, int pL, Paint paint, WorldData worldData) throws Version.VersionException {
 
         Chunk dataW = worldData.getChunk(chunkX - 1, chunkZ, dimension);
         Chunk dataN = worldData.getChunk(chunkX, chunkZ - 1, dimension);
 
-        boolean west = dataW != null && !dataW.isVoid(),
-                north = dataN != null && !dataN.isVoid();
+        boolean west = dataW != null && !dataW.isVoid(), // The X Coords
+                north = dataN != null && !dataN.isVoid();// The Z Coords
 
         for (int z = 0, tY = pY; z < 16; z++, tY += pL) {
             for (int x = 0, tX = pX; x < 16; x++, tX += pW) {
